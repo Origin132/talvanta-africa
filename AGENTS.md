@@ -10,7 +10,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 Talvanta Africa is an AI-powered HR recruitment and talent-solutions company connecting qualified professionals with growing businesses across Nigeria and Africa. The planned platform will serve employers, job seekers, general visitors, and users of Talia, the Talvanta Intelligent Assistant. The approved tagline is: “Connecting exceptional talent with growing businesses.”
 
-This repository has completed the Sprint 3 About and Services pages and is implementing the Sprint 4 Employers and Job Seekers pages. Do not begin feature development beyond the scope explicitly authorized by the current task.
+This repository has completed the Sprint 4 Employers and Job Seekers pages and is implementing the Sprint 5 employer hiring-request and candidate-registration demonstration forms. Do not begin feature development beyond the scope explicitly authorized by the current task.
 
 ## Required documentation
 

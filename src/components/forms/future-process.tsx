@@ -1,0 +1,7 @@
+import { PageContainer } from "@/components/layout/page-container";
+import { SectionHeading } from "@/components/ui/section-heading";
+
+type Props = { heading: string; note: string; steps: readonly { title: string; text: string }[]; disclaimer: string; extraDisclaimer?: string };
+export function FutureProcess({ heading, note, steps, disclaimer, extraDisclaimer }: Props) {
+  return <><section className="bg-white"><PageContainer className="py-16 sm:py-24"><SectionHeading eyebrow="Future workflow" heading={heading} supportingText={note} /><ol className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">{steps.map((step, index) => <li key={step.title} className="rounded-[var(--radius)] border border-border-grey bg-soft-grey p-6"><span className="grid size-10 place-items-center rounded-xl bg-green font-heading text-sm font-extrabold text-white">{index + 1}</span><h3 className="mt-5 text-lg font-extrabold text-navy">{step.title}</h3><p className="mt-3 leading-7 text-slate">{step.text}</p></li>)}</ol></PageContainer></section><section className="bg-soft-grey"><PageContainer className="py-10"><h2 className="font-heading text-2xl font-extrabold text-navy">Important recruitment disclaimer</h2><p className="mt-4 max-w-4xl leading-8 text-slate">{disclaimer}</p>{extraDisclaimer ? <p className="mt-3 max-w-4xl font-semibold leading-8 text-navy">{extraDisclaimer}</p> : null}</PageContainer></section></>;
+}

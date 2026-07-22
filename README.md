@@ -2,7 +2,7 @@
 
 Talvanta Africa is an AI-powered HR recruitment and talent-solutions project intended to connect qualified professionals with growing businesses across Nigeria and Africa.
 
-> **Sprint 1 status:** The shared website foundation and branded placeholder routes are being established. Recruitment workflows, integrations, job data, and functional AI features have not yet begun.
+> **Sprint 2 status:** The shared website foundation and complete public homepage are in place. Other public routes remain branded placeholders, and recruitment workflows, integrations, job data, and functional AI features have not yet begun.
 
 ## Capstone context
 
@@ -40,7 +40,7 @@ These are planned capabilities, not currently implemented features.
 - Google Sheets as the planned initial data store
 - Git and GitHub for version control and collaboration
 
-Not every planned dependency or integration is installed or configured during Sprint 1.
+Not every planned dependency or integration is installed or configured during Sprint 2.
 
 ## Local development
 
@@ -83,10 +83,10 @@ All sample jobs, candidates, employers, testimonials, metrics, and other fiction
 
 ## Current limitations
 
-- The full homepage and detailed page content have not been developed.
-- Current public routes are branded Sprint 1 placeholders.
+- The homepage is developed; detailed content for the other public routes has not been developed.
+- Public routes beyond the homepage remain branded placeholders.
 - Talia, forms, routes, APIs, webhooks, storage, and external integrations are not implemented.
 - Approved Word planning documents are not yet available in this repository.
 - Planned libraries beyond the generated starter dependencies have not been installed.
 
-The next step is to import the approved source documents into `docs/`, review them, and use the approved content to guide Sprint 2 homepage development.
+The next step is to import the approved source documents into `docs/`, review them, and use the approved content to guide the next page-development sprint.

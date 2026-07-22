@@ -1,0 +1,5 @@
+import { ChecklistSection } from "@/components/audiences/checklist-section";
+
+const items = ["Organisation name", "Contact person", "Contact email and telephone number", "Job title", "Main responsibilities", "Required skills", "Required experience", "Education or professional requirements", "Job location", "Workplace arrangement", "Employment type", "Number of positions", "Salary range, where available", "Preferred start date", "Recruitment timeline", "Additional role information"] as const;
+
+export function EmployerPreparation() { return <ChecklistSection eyebrow="Before You Begin" heading="Information that helps create a clearer recruitment brief" supportingText="Employers do not need to have every detail finalised, but the following information can help Talvanta Africa understand the requirement." items={items} privacyNote="Only information relevant to the recruitment enquiry should be submitted. Sensitive personal information should not be included unless specifically required and handled through an appropriate process." />; }

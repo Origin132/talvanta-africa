@@ -1,0 +1,6 @@
+import { ResponsibilityGroups } from "@/components/audiences/responsibility-groups";
+
+const support = ["Organising hiring-request information", "Identifying incomplete information", "Preparing structured vacancy summaries", "Supporting candidate-search administration", "Suggesting potential matches for review", "Supporting timely follow-up"] as const;
+const responsibility = ["Confirming role requirements", "Reviewing candidate suitability", "Conducting interviews", "Assessing organisational fit", "Making shortlisting decisions", "Making final hiring decisions"] as const;
+
+export function EmployerTechnology() { return <ResponsibilityGroups eyebrow="Responsible Recruitment Technology" heading="Intelligent tools support recruitment administration" paragraphs={["Talvanta Africa may use artificial intelligence and automation to organise employer enquiries, structure vacancy information, prepare summaries, support lead classification, and identify possible candidate matches.", "These tools assist recruitment administration. They do not make final hiring decisions, replace interviews, or remove the need for professional human review."]} supportHeading="Technology may support" supportItems={support} responsibilityHeading="Employers and recruitment professionals remain responsible for" responsibilityItems={responsibility} />; }

@@ -2,7 +2,7 @@
 
 Talvanta Africa is an AI-powered HR recruitment and talent-solutions project intended to connect qualified professionals with growing businesses across Nigeria and Africa.
 
-> **Sprint 3 status:** The shared website foundation, homepage, About page, and Services page are in place. Other public routes remain branded placeholders, and recruitment workflows, integrations, job data, and functional AI features have not yet begun.
+> **Sprint 4 status:** The shared foundation, homepage, About, Services, Employers, and Job Seekers pages are in place. Other public routes remain placeholders, and recruitment workflows, integrations, job data, and functional AI features have not yet begun.
 
 ## Capstone context
 
@@ -83,7 +83,7 @@ All sample jobs, candidates, employers, testimonials, metrics, and other fiction
 
 ## Current limitations
 
-- The homepage, About page, and Services page are developed; detailed content for the other public routes has not been developed.
+- The homepage, About, Services, Employers, and Job Seekers pages are developed; detailed content for the other public routes has not been developed.
 - Remaining public routes are branded placeholders.
 - Talia, forms, routes, APIs, webhooks, storage, and external integrations are not implemented.
 - Approved Word planning documents are not yet available in this repository.

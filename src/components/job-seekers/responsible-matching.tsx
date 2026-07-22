@@ -1,0 +1,6 @@
+import { ResponsibilityGroups } from "@/components/audiences/responsibility-groups";
+
+const support = ["Organising candidate information", "Identifying incomplete profile information", "Comparing stated skills with role requirements", "Highlighting potentially relevant vacancies", "Preparing profile summaries", "Supporting recruitment administration"] as const;
+const responsibility = ["Confirming candidate interest", "Reviewing suitability", "Assessing applications", "Conducting interviews", "Making shortlisting decisions", "Making final employment decisions"] as const;
+
+export function ResponsibleMatching() { return <ResponsibilityGroups eyebrow="Responsible Matching" heading="Potential matches are starting points, not employment decisions" paragraphs={["Talvanta Africa may use structured information and artificial intelligence to identify vacancies that appear relevant to a candidate’s experience, skills, location, and preferences.", "A potential match does not mean that the candidate has applied, been shortlisted, passed an assessment, or received an employment offer."]} supportHeading="Technology may support" supportItems={support} responsibilityHeading="Human review remains responsible for" responsibilityItems={responsibility} />; }

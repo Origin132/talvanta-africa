@@ -2,7 +2,7 @@
 
 Talvanta Africa is an AI-powered HR recruitment and talent-solutions project intended to connect qualified professionals with growing businesses across Nigeria and Africa.
 
-> **Sprint 5 status:** The shared foundation and core informational pages are in place. The employer hiring-request and candidate-registration forms validate and simulate submission locally in the browser; they do not transmit or store information.
+> **Sprint 6 status:** The shared foundation and core informational pages are in place. The employer hiring-request and candidate-registration forms submit to internal Next.js route handlers for server validation; no external processing or permanent storage is active.
 
 ## Capstone context
 
@@ -85,7 +85,7 @@ All sample jobs, candidates, employers, testimonials, metrics, and other fiction
 
 - The homepage, About, Services, Employers, Job Seekers, Hire Talent, and Candidate Registration pages are developed; detailed content for the other public routes has not been developed.
 - Remaining public routes are branded placeholders.
-- Talia, live form processing, APIs, webhooks, storage, and external integrations are not implemented.
+- Talia, external form processing, webhooks, storage, and external integrations are not implemented. Sprint 6 APIs validate requests internally and discard submitted data after responding.
 - Approved Word planning documents are not yet available in this repository.
 - Planned libraries beyond the generated starter dependencies have not been installed.
 

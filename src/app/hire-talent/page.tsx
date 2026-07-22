@@ -24,7 +24,7 @@ export default function HireTalentPage() {
     <div className="border-b border-border-grey bg-white"><PageContainer className="py-5"><p className="border-l-2 border-gold pl-4 text-sm font-semibold text-navy">Submitting this form does not create a service agreement or guarantee candidate availability.</p></PageContainer></div>
     <FormNotice caution="Do not enter confidential business information, passwords, financial details, or unnecessary personal data." />
     <HiringRequestForm />
-    <FutureProcess heading="What will happen when live processing is introduced?" note="These steps describe a planned future workflow. They are not active processing during Sprint 5." steps={steps} disclaimer="Talvanta Africa does not guarantee candidate availability, successful placement, recruitment timelines, or employment outcomes. Employers remain responsible for their recruitment criteria, interviews, selection decisions, employment checks, and final hiring decisions." />
+    <FutureProcess heading="What will happen when live processing is introduced?" note="These steps describe a planned future workflow. They are not active processing during this sprint." steps={steps} disclaimer="Talvanta Africa does not guarantee candidate availability, successful placement, recruitment timelines, or employment outcomes. Employers remain responsible for their recruitment criteria, interviews, selection decisions, employment checks, and final hiring decisions." />
     <CTASection heading="Not ready to complete the full enquiry?" supportingText="Review the employer guidance or use the contact page for a general enquiry." primaryAction={{ label: "Employer Guidance", href: "/employers" }} secondaryAction={{ label: "Contact Us", href: "/contact" }} />
   </>;
 }

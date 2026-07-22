@@ -2,7 +2,7 @@
 
 Talvanta Africa is an AI-powered HR recruitment and talent-solutions project intended to connect qualified professionals with growing businesses across Nigeria and Africa.
 
-> **Sprint 0 status:** This repository has been prepared for development. Application development has not yet begun, and the generated Next.js starter interface remains unchanged.
+> **Sprint 1 status:** The shared website foundation and branded placeholder routes are being established. Recruitment workflows, integrations, job data, and functional AI features have not yet begun.
 
 ## Capstone context
 
@@ -40,7 +40,7 @@ These are planned capabilities, not currently implemented features.
 - Google Sheets as the planned initial data store
 - Git and GitHub for version control and collaboration
 
-Not every planned dependency or integration is installed or configured during Sprint 0.
+Not every planned dependency or integration is installed or configured during Sprint 1.
 
 ## Local development
 
@@ -83,10 +83,10 @@ All sample jobs, candidates, employers, testimonials, metrics, and other fiction
 
 ## Current limitations
 
-- Application UI and features have not been developed.
-- The generated Next.js starter page and default styling remain in place.
+- The full homepage and detailed page content have not been developed.
+- Current public routes are branded Sprint 1 placeholders.
 - Talia, forms, routes, APIs, webhooks, storage, and external integrations are not implemented.
 - Approved Word planning documents are not yet available in this repository.
 - Planned libraries beyond the generated starter dependencies have not been installed.
 
-The next step is to import the approved source documents into `docs/` and review them before defining or beginning the first application-development sprint.
+The next step is to import the approved source documents into `docs/`, review them, and use the approved content to guide Sprint 2 homepage development.

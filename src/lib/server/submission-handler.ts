@@ -1,6 +1,8 @@
 import { hasSameOrigin, isRateLimited } from "@/lib/server/submission-security";
 import type { SubmissionApiResponse } from "@/types/api";
 import type { ValidationResult } from "@/lib/validation/submission-validation";
+import { sendToMakeWebhook } from "@/lib/server/make-webhook";
+import type { RecruitmentWebhookPayload } from "@/types/integrations";
 
 const MAX_BODY_BYTES = 64 * 1024;
 type JsonRecord = Record<string, unknown>;
@@ -9,6 +11,8 @@ type Config = {
   successMessage: string;
   allowedFields: ReadonlySet<string>;
   validate: (data: JsonRecord) => ValidationResult;
+  webhookKind: "employer" | "candidate";
+  buildWebhookPayload: (data: JsonRecord, submissionId: string) => RecruitmentWebhookPayload;
 };
 
 function json(body: SubmissionApiResponse, status: number, headers?: HeadersInit) {
@@ -37,7 +41,16 @@ export async function handleSubmission(request: Request, config: Config) {
     if (await isRateLimited(request, config.endpoint)) return failure("Too many submission attempts were received. Please wait before trying again.", 429, { "Retry-After": "600" });
     const result = config.validate(data);
     if (!result.valid) return json({ success: false, message: "Some submitted information is invalid.", fieldErrors: result.fieldErrors }, 422);
-    return json({ success: true, message: config.successMessage, submissionId: crypto.randomUUID() }, 200);
+    const submissionId = crypto.randomUUID();
+    const webhookResult = await sendToMakeWebhook(config.webhookKind, config.buildWebhookPayload(data, submissionId));
+    if (!webhookResult.success) {
+      if (webhookResult.category === "configuration") return failure("Recruitment processing is temporarily unavailable. Please try again later.", 503);
+      if (webhookResult.category === "timeout") return failure("Your information could not be forwarded for processing. Please try again.", 504);
+      if (webhookResult.category === "upstream") return failure("Your information could not be forwarded for processing. Please try again.", 502);
+      if (webhookResult.category === "unavailable") return failure("Recruitment processing is temporarily unavailable. Please try again later.", 503);
+      return failure("The submission could not be processed. Please try again.", 500);
+    }
+    return json({ success: true, message: config.successMessage, submissionId }, 200);
   } catch {
     const correlationId = crypto.randomUUID();
     console.error(`[submission-error] endpoint=${config.endpoint} category=unexpected correlation=${correlationId}`);

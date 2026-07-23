@@ -2,7 +2,7 @@
 
 Talvanta Africa is an AI-powered HR recruitment and talent-solutions project intended to connect qualified professionals with growing businesses across Nigeria and Africa.
 
-> **Sprint 6 status:** The shared foundation and core informational pages are in place. The employer hiring-request and candidate-registration forms submit to internal Next.js route handlers for server validation; no external processing or permanent storage is active.
+> **Sprint 7 status:** Valid employer and candidate submissions can be forwarded from the internal Next.js route handlers to separately configured Make.com webhooks. Make.com scenarios, Google Sheets, and recruiter email connections require manual configuration.
 
 ## Capstone context
 
@@ -73,6 +73,8 @@ Copy-Item .env.example .env.local
 
 On macOS or Linux, use `cp .env.example .env.local`. Never commit secrets. Variables without the `NEXT_PUBLIC_` prefix must remain server-only; configure production values through Vercel’s protected environment settings.
 
+For Sprint 7, add the real employer and candidate Make.com webhook URLs to `.env.local`, optionally add a long shared secret, and restart the development server after changes. Never commit `.env.local`; rotate any webhook URL or secret that is exposed. See [`docs/make-integration.md`](docs/make-integration.md) for the manual Make.com, Google Sheets, and recruiter-email configuration.
+
 ## AI and human oversight
 
 Talia is planned as an AI recruitment assistant. It must disclose that it is AI, collect lead information only with consent, and support rather than replace human recruitment judgement. It must not guarantee employment or placement, automatically reject candidates, make final hiring decisions, request unnecessary sensitive information, or produce discriminatory recommendations.
@@ -85,7 +87,7 @@ All sample jobs, candidates, employers, testimonials, metrics, and other fiction
 
 - The homepage, About, Services, Employers, Job Seekers, Hire Talent, and Candidate Registration pages are developed; detailed content for the other public routes has not been developed.
 - Remaining public routes are branded placeholders.
-- Talia, external form processing, webhooks, storage, and external integrations are not implemented. Sprint 6 APIs validate requests internally and discard submitted data after responding.
+- Talia and other excluded integrations remain unimplemented. Webhook forwarding requires local or deployment configuration, and the repository does not automatically create Make.com scenarios, Sheets, or email connections.
 - Approved Word planning documents are not yet available in this repository.
 - Planned libraries beyond the generated starter dependencies have not been installed.
 

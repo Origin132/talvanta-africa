@@ -1,7 +1,7 @@
 export type WebhookEnvironment = "development" | "production" | "test";
 
 export type WebhookEnvelope<TData> = {
-  eventType: "employer.hiring_enquiry.created" | "candidate.registration.created";
+  eventType: "employer.hiring_enquiry.created" | "candidate.registration.created" | "contact.enquiry.created";
   schemaVersion: "1.0";
   submissionId: string;
   submittedAt: string;
@@ -32,9 +32,21 @@ export type CandidateWebhookData = {
   humanDecisionAcknowledgement: true; marketingConsent: boolean;
 };
 
+export type ContactWebhookData = {
+  fullName: string;
+  organisation: string;
+  email: string;
+  telephone: string;
+  enquiryType: string;
+  subject: string;
+  message: string;
+  consent: true;
+};
+
 export type EmployerWebhookPayload = WebhookEnvelope<EmployerWebhookData>;
 export type CandidateWebhookPayload = WebhookEnvelope<CandidateWebhookData>;
-export type RecruitmentWebhookPayload = EmployerWebhookPayload | CandidateWebhookPayload;
+export type ContactWebhookPayload = WebhookEnvelope<ContactWebhookData>;
+export type RecruitmentWebhookPayload = EmployerWebhookPayload | CandidateWebhookPayload | ContactWebhookPayload;
 
 export type WebhookResult =
   | { success: true }

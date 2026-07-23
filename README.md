@@ -2,7 +2,7 @@
 
 Talvanta Africa is an AI-powered HR recruitment and talent-solutions project intended to connect qualified professionals with growing businesses across Nigeria and Africa.
 
-> **Sprint 8 status:** Talia is available as a rule-based demonstration assistant using an internal Next.js route and approved responses. It does not call external AI services or store conversations. Employer and candidate submissions can still be forwarded to separately configured Make.com webhooks.
+> **Sprint 9 status:** The public contact centre, FAQ, privacy, terms, local preference banner, improved navigation/footer, and contact enquiry API are implemented. Talia remains a rule-based demonstration assistant. Employer, candidate, and contact submissions can be forwarded to separately configured Make.com webhooks.
 
 ## Capstone context
 
@@ -73,7 +73,7 @@ Copy-Item .env.example .env.local
 
 On macOS or Linux, use `cp .env.example .env.local`. Never commit secrets. Variables without the `NEXT_PUBLIC_` prefix must remain server-only; configure production values through Vercel’s protected environment settings.
 
-For Sprint 7, add the real employer and candidate Make.com webhook URLs to `.env.local`, optionally add a long shared secret, and restart the development server after changes. Never commit `.env.local`; rotate any webhook URL or secret that is exposed. See [`docs/make-integration.md`](docs/make-integration.md) for the manual Make.com, Google Sheets, and recruiter-email configuration.
+Add the real employer, candidate, and contact Make.com webhook URLs to `.env.local`, optionally add a long shared secret, and restart the development server after changes. Never commit `.env.local`; rotate any webhook URL or secret that is exposed. See [`docs/make-integration.md`](docs/make-integration.md) and [`docs/contact-integration.md`](docs/contact-integration.md) for manual Make.com, Google Sheets, and recruiter-email configuration.
 
 ## AI and human oversight
 
@@ -85,8 +85,7 @@ All sample jobs, candidates, employers, testimonials, metrics, and other fiction
 
 ## Current limitations
 
-- The homepage, About, Services, Employers, Job Seekers, Hire Talent, and Candidate Registration pages are developed; detailed content for the other public routes has not been developed.
-- Remaining public routes are branded placeholders.
+- The Jobs route remains a branded placeholder; a job board is outside Sprint 9.
 - Talia uses deterministic mock responses rather than live generative AI. Conversation state exists only in browser memory and is cleared by a refresh or page close.
 - Webhook forwarding requires local or deployment configuration, and the repository does not automatically create Make.com scenarios, Sheets, or email connections.
 - Approved Word planning documents are not yet available in this repository.
@@ -94,4 +93,4 @@ All sample jobs, candidates, employers, testimonials, metrics, and other fiction
 
 See [`docs/talia-mock-mode.md`](docs/talia-mock-mode.md) for Talia’s architecture, privacy limitations, responsible-recruitment boundaries, testing guidance, and future upgrade path.
 
-The next project-level step remains importing the approved source documents into `docs/` and reviewing them before expanding approved functionality.
+The next project-level step remains importing and reviewing the approved source documents, obtaining qualified review of the privacy and terms drafts, and configuring/testing the three external workflows before production use.

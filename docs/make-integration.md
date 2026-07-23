@@ -5,8 +5,8 @@ This guide separates repository code from the manual Make.com, Google Sheets, an
 ## Repository configuration
 
 1. Copy `.env.example` to `.env.local`.
-2. Set `MAKE_EMPLOYER_WEBHOOK_URL` and `MAKE_CANDIDATE_WEBHOOK_URL` to the two real Make.com custom webhook URLs.
-3. Optionally set `MAKE_WEBHOOK_SHARED_SECRET` to a long random value and configure both scenarios to verify the `X-Talvanta-Webhook-Secret` header.
+2. Set `MAKE_EMPLOYER_WEBHOOK_URL`, `MAKE_CANDIDATE_WEBHOOK_URL`, and `MAKE_CONTACT_WEBHOOK_URL` to three dedicated Make.com custom webhook URLs.
+3. Optionally set `MAKE_WEBHOOK_SHARED_SECRET` to a long random value and configure all scenarios to verify the `X-Talvanta-Webhook-Secret` header.
 4. Keep `MAKE_WEBHOOK_TIMEOUT_MS=10000` unless a deliberately tested value from 100 to 30000 milliseconds is required.
 5. Restart Next.js after changing environment values.
 6. Never commit `.env.local`. Rotate a webhook URL or secret immediately if it is exposed.
@@ -15,7 +15,7 @@ The browser calls only the website APIs. Webhook URLs and the optional secret ar
 
 ## Payload contract
 
-Both scenarios receive `schemaVersion: "1.0"`, a random `submissionId`, an ISO `submittedAt` timestamp, `source: "talvanta-africa-website"`, and the runtime environment. Employer events use `employer.hiring_enquiry.created`; candidate events use `candidate.registration.created`.
+All three scenarios receive `schemaVersion: "1.0"`, a random `submissionId`, an ISO `submittedAt` timestamp, `source: "talvanta-africa-website"`, and the runtime environment. Employer events use `employer.hiring_enquiry.created`; candidate events use `candidate.registration.created`; contact events use `contact.enquiry.created`.
 
 Only validated form fields are mapped into `data`. Honeypots, rate-limit identifiers, IP addresses, user-agent strings, secrets, and internal error references are never included.
 
@@ -43,6 +43,17 @@ Recommended modules:
 
 Exact module names can vary by Make.com interface and connected email provider. A shared-secret header is an additional check, not complete webhook security.
 
+## Scenario C: Contact Enquiry
+
+Recommended modules:
+
+1. **Webhooks — Custom webhook** using the contact URL.
+2. **Filter** requiring `eventType` to equal `contact.enquiry.created` and verifying the optional shared-secret header where supported.
+3. **Tools or JSON** to map and normalise version 1.0 fields.
+4. **Google Sheets — Add a row** in the `Contact Enquiries` worksheet.
+5. **Email — Send a recruiter notification** through the approved provider.
+6. **Webhooks — Webhook response** returning 2xx only after required modules succeed.
+
 ## Google Sheets design
 
 Recommended workbook: **Talvanta Africa Recruitment Leads**.
@@ -63,6 +74,14 @@ Columns, in order:
 
 Make.com should assign the default candidate status `Registered`. Join array values with a readable delimiter such as `Permanent | Contract | Remote` instead of storing raw JSON arrays unless a deliberate alternative is approved.
 
+### Contact Enquiries worksheet
+
+Columns, in order:
+
+`Submission ID`, `Submitted At`, `Source`, `Full Name`, `Organisation`, `Email`, `Telephone`, `Enquiry Type`, `Subject`, `Message`, `Consent`, `Status`, `Recruiter Notes`.
+
+Make.com should assign the default status `New`. The website does not assign workflow status or recruiter notes.
+
 ## Recruiter notification templates
 
 Make.com—not Next.js—should send these notifications. User confirmation emails remain out of scope.
@@ -77,6 +96,10 @@ Include the submission reference and time, candidate contact details, current an
 
 Keep notifications concise and retain long free-text details in the worksheet. Do not claim confidentiality or encryption unless the configured provider supports and documents it.
 
+Contact subject: `New Talvanta Africa Contact Enquiry — {{enquiryType}} — {{subject}}`
+
+Use the same concise notification structure: submission reference and time, name, organisation where supplied, email, telephone where supplied, enquiry type, subject, a concise message excerpt, and a workbook or row link where practical.
+
 ## Failure and duplicate handling
 
 The website reports missing configuration or network unavailability as 503, upstream non-2xx responses as 502, and timeouts as 504. It does not report success unless Make.com returns 2xx. Upstream response bodies are ignored and never sent to the browser.
@@ -86,7 +109,7 @@ There is no persistent queue and no automatic retry because either could create 
 ## Manual verification checklist
 
 - Confirm each scenario rejects unexpected event types and verifies the optional secret.
-- Submit clearly labelled demonstration employer and candidate records.
+- Submit clearly labelled demonstration employer, candidate, and contact records.
 - Confirm exactly one matching worksheet row and one recruiter notification per submission.
 - Confirm the submission ID matches the website, worksheet, and notification.
 - Confirm long free-text fields are not copied wholesale into email.

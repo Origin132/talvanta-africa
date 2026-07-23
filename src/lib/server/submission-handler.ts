@@ -11,7 +11,7 @@ type Config = {
   successMessage: string;
   allowedFields: ReadonlySet<string>;
   validate: (data: JsonRecord) => ValidationResult;
-  webhookKind: "employer" | "candidate";
+  webhookKind: "employer" | "candidate" | "contact";
   buildWebhookPayload: (data: JsonRecord, submissionId: string) => RecruitmentWebhookPayload;
 };
 

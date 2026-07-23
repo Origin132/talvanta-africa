@@ -1,11 +1,13 @@
 import "server-only";
 import type { RecruitmentWebhookPayload, WebhookResult } from "@/types/integrations";
 
-type WebhookKind = "employer" | "candidate";
+type WebhookKind = "employer" | "candidate" | "contact";
 const DEFAULT_TIMEOUT_MS = 10_000;
 
 function webhookUrl(kind: WebhookKind) {
-  return kind === "employer" ? process.env.MAKE_EMPLOYER_WEBHOOK_URL?.trim() : process.env.MAKE_CANDIDATE_WEBHOOK_URL?.trim();
+  if (kind === "employer") return process.env.MAKE_EMPLOYER_WEBHOOK_URL?.trim();
+  if (kind === "candidate") return process.env.MAKE_CANDIDATE_WEBHOOK_URL?.trim();
+  return process.env.MAKE_CONTACT_WEBHOOK_URL?.trim();
 }
 
 function timeoutMs() {

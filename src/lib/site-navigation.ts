@@ -11,4 +11,5 @@ export const primaryNavigation: readonly NavigationItem[] = [
   { label: "For Employers", href: "/employers" },
   { label: "For Job Seekers", href: "/job-seekers" },
   { label: "Contact", href: "/contact" },
+  { label: "FAQs", href: "/faqs" },
 ];

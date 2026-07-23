@@ -48,6 +48,10 @@ class Validator {
     const value = this.string(name, "Telephone number", 7, 25);
     if (value && (!telephonePattern.test(value) || value.replace(/\D/g, "").length < 7)) this.errors[name] = "Enter a valid telephone number with at least 7 digits.";
   }
+  optionalTelephone(name: string) {
+    const value = this.string(name, "Telephone number", 7, 25, true);
+    if (value && (!telephonePattern.test(value) || value.replace(/\D/g, "").length < 7)) this.errors[name] = "Enter a valid telephone number with at least 7 digits.";
+  }
   optionalUrl(name: string) {
     const value = this.string(name, "URL", 1, 300, true);
     if (!value) return;
@@ -70,9 +74,11 @@ class Validator {
 
 const employerKeys = ["organisationName", "contactPerson", "workEmail", "telephone", "website", "organisationLocation", "jobTitle", "department", "employmentType", "positions", "workplaceArrangement", "jobLocation", "preferredStartDate", "recruitmentTimeline", "responsibilities", "requiredSkills", "requiredExperience", "educationRequirements", "salaryRange", "additionalInformation", "preferredService", "recruitedBefore", "accuracyConsent", "outcomesConsent", "reviewConsent", "marketingConsent", "websiteConfirmation"] as const;
 const candidateKeys = ["fullName", "email", "telephone", "currentLocation", "preferredLocation", "profileLink", "recentJobTitle", "employmentStatus", "experienceYears", "educationLevel", "areaOfStudy", "professionalQualifications", "keySkills", "experienceSummary", "industryExperience", "recentAchievements", "preferredEmploymentType", "workplacePreference", "preferredRoles", "salaryExpectation", "availability", "careerInterests", "cvSummary", "accuracyConsent", "outcomesConsent", "matchingConsent", "humanDecisionsConsent", "marketingConsent", "websiteConfirmation"] as const;
+const contactKeys = ["fullName", "organisation", "email", "telephone", "enquiryType", "subject", "message", "consent", "websiteConfirmation"] as const;
 
 export const allowedEmployerFields = new Set<string>(employerKeys);
 export const allowedCandidateFields = new Set<string>(candidateKeys);
+export const allowedContactFields = new Set<string>(contactKeys);
 
 function finish(validator: Validator): ValidationResult {
   return Object.keys(validator.errors).length ? { valid: false, fieldErrors: validator.errors } : { valid: true };
@@ -95,5 +101,18 @@ export function validateCandidateSubmission(data: JsonRecord): ValidationResult 
   v.string("keySkills", "Key skills", 20, 1500); v.string("experienceSummary", "Experience summary", 40, 2500); v.string("industryExperience", "Industry experience", 1, 200); v.string("recentAchievements", "Recent responsibilities or achievements", 1, 2000, true);
   v.choices("preferredEmploymentType", "Preferred employment type", ["Permanent", "Temporary", "Contract", "Internship", "Graduate role", "Part-time"]); v.choices("workplacePreference", "Workplace preference", ["On-site", "Hybrid", "Remote", "Flexible"]); v.string("preferredRoles", "Preferred role or job titles", 10, 1000); v.string("salaryExpectation", "Salary expectation", 1, 120, true); v.choice("availability", "Availability", ["Immediately", "Within 2 weeks", "Within 1 month", "Within 2–3 months", "More than 3 months", "To be discussed"]); v.string("careerInterests", "Career interests", 1, 1500, true); v.string("cvSummary", "CV summary or selected career history", 1, 3000, true);
   v.requiredBoolean("accuracyConsent", "Confirm that the professional information is accurate."); v.requiredBoolean("outcomesConsent", "Confirm that you understand registration does not guarantee an outcome."); v.requiredBoolean("matchingConsent", "Consent to candidate-profile review and potential opportunity matching."); v.requiredBoolean("humanDecisionsConsent", "Confirm that employment decisions remain human-led."); v.optionalBoolean("marketingConsent");
+  return finish(v);
+}
+
+export function validateContactSubmission(data: JsonRecord): ValidationResult {
+  const v = new Validator(data);
+  v.string("fullName", "Full name", 2, 120);
+  v.string("organisation", "Organisation", 1, 120, true);
+  v.email("email");
+  v.optionalTelephone("telephone");
+  v.choice("enquiryType", "Enquiry type", ["General enquiry", "Employer support", "Candidate support", "Recruitment services", "Partnership", "Privacy request", "Other"]);
+  v.string("subject", "Subject", 3, 160);
+  v.string("message", "Message", 20, 3000);
+  v.requiredBoolean("consent", "Consent to enquiry processing and follow-up.");
   return finish(v);
 }

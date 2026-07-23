@@ -16,7 +16,7 @@ export function Header() {
           Talvanta <span className="text-green">Africa</span>
         </Link>
 
-        <nav aria-label="Primary navigation" className="hidden lg:block">
+        <nav aria-label="Primary navigation" className="hidden xl:block">
           <ul className="flex items-center gap-1 xl:gap-2">
             {primaryNavigation.map((item) => (
               <li key={item.href}>
@@ -31,7 +31,7 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden xl:block">
           <ButtonLink href="/hire-talent">Hire Talent</ButtonLink>
         </div>
         <MobileNavigation items={primaryNavigation} />

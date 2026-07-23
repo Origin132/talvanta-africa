@@ -34,6 +34,12 @@ export function addTelephone(errors: FormErrors, data: FormData, name: string) {
   else if (!/^\+?[0-9()\-\s.]{7,25}$/.test(value) || value.replace(/\D/g, "").length < 7) errors[name] = "Enter a valid telephone number with at least 7 digits.";
 }
 
+export function addOptionalTelephone(errors: FormErrors, data: FormData, name: string) {
+  const value = valueOf(data, name);
+  if (!value) return;
+  if (!/^\+?[0-9()\-\s.]{7,25}$/.test(value) || value.replace(/\D/g, "").length < 7) errors[name] = "Enter a valid telephone number with at least 7 digits.";
+}
+
 export function addOptionalUrl(errors: FormErrors, data: FormData, name: string) {
   const value = valueOf(data, name);
   if (!value) return;

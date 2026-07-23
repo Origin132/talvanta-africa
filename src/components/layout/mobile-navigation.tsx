@@ -29,7 +29,7 @@ export function MobileNavigation({ items }: MobileNavigationProps) {
   }, [isOpen]);
 
   return (
-    <div className="lg:hidden">
+    <div className="xl:hidden">
       <button
         ref={triggerRef}
         type="button"

@@ -9,6 +9,7 @@ const linkGroups = [
       { label: "Services", href: "/services" },
       { label: "Jobs", href: "/jobs" },
       { label: "Contact", href: "/contact" },
+      { label: "FAQs", href: "/faqs" },
     ],
   },
   {
@@ -24,6 +25,7 @@ const linkGroups = [
     links: [
       { label: "For Job Seekers", href: "/job-seekers" },
       { label: "Explore Jobs", href: "/jobs" },
+      { label: "Candidate Registration", href: "/candidate-registration" },
     ],
   },
 ] as const;
@@ -83,6 +85,7 @@ export function Footer() {
             <ul className="flex flex-wrap gap-x-5 gap-y-2">
               <li><Link className="hover:text-gold" href="/privacy">Privacy</Link></li>
               <li><Link className="hover:text-gold" href="/terms">Terms</Link></li>
+              <li><Link className="hover:text-gold" href="/faqs">FAQs</Link></li>
             </ul>
           </nav>
         </div>

@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageHero } from "@/components/ui/page-hero";
+import { createPageMetadata } from "@/lib/seo-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Privacy Policy",
-  description: "How the Talvanta Africa demonstration website handles information submitted through its public forms and Talia.",
-};
+  description: "How the Talvanta Africa demonstration website handles information submitted through public forms, integrations, local preferences, and Talia.",
+  path: "/privacy",
+});
 
 const sections = [
   ["Information collected", "The employer, candidate, and contact forms collect the fields shown on each form, together with consent choices and a submission reference. Talia processes only the messages entered during the current page session. Avoid submitting unnecessary sensitive information."],

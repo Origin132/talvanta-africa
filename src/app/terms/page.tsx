@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageHero } from "@/components/ui/page-hero";
+import { createPageMetadata } from "@/lib/seo-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Terms of Use",
-  description: "Terms and important limitations for using the Talvanta Africa demonstration website.",
-};
+  description: "Website-use terms, recruitment disclaimers, human-led decision boundaries, and important limitations for Talvanta Africa’s demonstration website.",
+  path: "/terms",
+});
 
 const sections = [
   ["Website use", "Use this website lawfully and do not attempt to disrupt it, bypass safeguards, submit malicious material, impersonate another person, or provide information you are not authorised to share."],

@@ -4,6 +4,9 @@ import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { TaliaLauncher } from "@/components/talia/talia-launcher";
 import { CookieConsent } from "@/components/legal/cookie-consent";
+import { JsonLd } from "@/components/seo/json-ld";
+import { getSiteUrl } from "@/lib/site-url";
+import { organisationStructuredData, websiteStructuredData } from "@/lib/structured-data";
 import "./globals.css";
 
 const inter = Inter({
@@ -19,12 +22,31 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "Talvanta Africa | AI-Powered Recruitment",
+    default: "Talvanta Africa | Recruitment and Workforce Solutions",
     template: "%s | Talvanta Africa",
   },
   description:
-    "Talvanta Africa connects growing organisations with qualified professionals through intelligent, efficient, and human-centred recruitment solutions.",
+    "Talvanta Africa connects employers with professional talent through permanent recruitment, contract staffing, executive search, graduate recruitment, candidate screening, and HR advisory services.",
+  applicationName: "Talvanta Africa",
+  creator: "Talvanta Africa",
+  publisher: "Talvanta Africa",
+  category: "Recruitment and workforce services",
+  keywords: ["recruitment services", "workforce solutions", "permanent recruitment", "contract staffing", "executive search", "graduate recruitment"],
+  robots: { index: true, follow: true },
+  openGraph: {
+    type: "website",
+    siteName: "Talvanta Africa",
+    title: "Talvanta Africa | Recruitment and Workforce Solutions",
+    description: "Connecting professional talent with growing businesses through human-led recruitment and workforce services.",
+    url: getSiteUrl(),
+  },
+  twitter: {
+    card: "summary",
+    title: "Talvanta Africa | Recruitment and Workforce Solutions",
+    description: "Connecting professional talent with growing businesses through human-led recruitment and workforce services.",
+  },
 };
 
 export default function RootLayout({
@@ -35,6 +57,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
       <body>
+        <JsonLd data={organisationStructuredData()} />
+        <JsonLd data={websiteStructuredData()} />
         <a className="skip-link" href="#main-content">
           Skip to main content
         </a>

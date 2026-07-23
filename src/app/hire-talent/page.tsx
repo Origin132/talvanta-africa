@@ -5,11 +5,13 @@ import { FutureProcess } from "@/components/forms/future-process";
 import { PageContainer } from "@/components/layout/page-container";
 import { CTASection } from "@/components/ui/cta-section";
 import { PageHero } from "@/components/ui/page-hero";
+import { createPageMetadata } from "@/lib/seo-metadata";
 
-export const metadata: Metadata = {
-  title: { absolute: "Hire Talent | Talvanta Africa" },
-  description: "Submit a structured recruitment enquiry to Talvanta Africa and provide the information needed to begin a conversation about your organisation’s hiring requirements.",
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "Hire Talent",
+  description: "Submit a structured recruitment enquiry to Talvanta Africa for your organisation’s hiring and workforce requirements.",
+  path: "/hire-talent",
+});
 
 const steps = [
   { title: "Enquiry review", text: "The submitted requirement will be checked for completeness and clarity." },

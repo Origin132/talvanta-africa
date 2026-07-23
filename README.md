@@ -94,3 +94,12 @@ All sample jobs, candidates, employers, testimonials, metrics, and other fiction
 See [`docs/talia-mock-mode.md`](docs/talia-mock-mode.md) for Talia’s architecture, privacy limitations, responsible-recruitment boundaries, testing guidance, and future upgrade path.
 
 The next project-level step remains importing and reviewing the approved source documents, obtaining qualified review of the privacy and terms drafts, and configuring/testing the three external workflows before production use.
+
+## SEO and deployment readiness
+
+Sprint 10 adds canonical and social metadata, structured data, `robots.txt`,
+`sitemap.xml`, compatible security headers, and a shared public-site URL
+configuration. Set `NEXT_PUBLIC_SITE_URL` to the approved HTTPS production
+origin before deployment. See
+[`docs/production-readiness.md`](docs/production-readiness.md) for the complete
+pre-deployment, post-deployment, external-workflow, and rollback checklist.

@@ -33,7 +33,7 @@ export function CookieConsent() {
   return (
     <section
       aria-labelledby="cookie-heading"
-      className="fixed inset-x-3 top-[calc(5rem+max(0.75rem,env(safe-area-inset-top)))] z-50 mx-auto max-w-4xl rounded-[var(--radius)] border border-border-grey bg-white p-4 shadow-[0_16px_50px_rgb(16_42_67/0.22)] sm:p-5"
+      className="fixed inset-x-3 top-[calc(5rem+max(0.75rem,env(safe-area-inset-top)))] z-50 mx-auto max-h-[calc(100dvh-6.5rem)] max-w-4xl overflow-y-auto rounded-[var(--radius)] border border-border-grey bg-white p-4 shadow-[0_16px_50px_rgb(16_42_67/0.22)] sm:p-5"
     >
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="max-w-2xl">
@@ -50,14 +50,14 @@ export function CookieConsent() {
             .
           </p>
         </div>
-        <div className="flex flex-wrap gap-2">
-          <button type="button" onClick={() => choose("accepted")} className="inline-flex min-h-11 items-center justify-center rounded-lg bg-green px-4 py-2 text-sm font-bold text-white hover:bg-navy">
+        <div className="grid w-full gap-2 sm:grid-cols-3 lg:w-auto lg:grid-cols-1">
+          <button type="button" onClick={() => choose("accepted")} className="inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-green px-4 py-2 text-sm font-bold text-white hover:bg-navy">
             Accept
           </button>
-          <button type="button" onClick={() => choose("rejected")} className="inline-flex min-h-11 items-center justify-center rounded-lg border border-green bg-white px-4 py-2 text-sm font-bold text-green hover:bg-soft-grey">
+          <button type="button" onClick={() => choose("rejected")} className="inline-flex min-h-11 w-full items-center justify-center rounded-lg border border-green bg-white px-4 py-2 text-sm font-bold text-green hover:bg-soft-grey">
             Reject non-essential
           </button>
-          <button type="button" onClick={() => choose("dismissed")} className="inline-flex min-h-11 items-center justify-center rounded-lg px-4 py-2 text-sm font-bold text-slate hover:bg-soft-grey" aria-label="Dismiss cookie preference notice">
+          <button type="button" onClick={() => choose("dismissed")} className="inline-flex min-h-11 w-full items-center justify-center rounded-lg px-4 py-2 text-sm font-bold text-slate hover:bg-soft-grey" aria-label="Dismiss cookie preference notice">
             Dismiss
           </button>
         </div>

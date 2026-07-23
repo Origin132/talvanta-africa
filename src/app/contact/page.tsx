@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ContactForm } from "@/components/contact/contact-form";
 import { ContactFaqs } from "@/components/contact/contact-faqs";
 import { PageContainer } from "@/components/layout/page-container";
 import { CTASection } from "@/components/ui/cta-section";
 import { PageHero } from "@/components/ui/page-hero";
+import { createPageMetadata } from "@/lib/seo-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Contact",
-  description: "Contact Talvanta Africa about recruitment services, candidate support, partnerships, privacy, or general enquiries.",
-};
+  description: "Contact Talvanta Africa about recruitment services, employer support, candidate guidance, partnerships, privacy, or general enquiries.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
@@ -37,7 +40,7 @@ export default function ContactPage() {
               <article key={title} className="rounded-[var(--radius)] border border-border-grey bg-soft-grey p-6">
                 <h3 className="text-xl font-extrabold text-navy">{title}</h3>
                 <p className="mt-3 leading-7 text-slate">{description}</p>
-                <a className="mt-5 inline-flex min-h-11 items-center font-bold text-green underline underline-offset-4" href={href}>{label}</a>
+                <Link className="mt-5 inline-flex min-h-11 items-center font-bold text-green underline underline-offset-4" href={href}>{label}</Link>
               </article>
             ))}
           </div>

@@ -5,11 +5,13 @@ import { CandidateRegistrationForm } from "@/components/job-seekers/candidate-re
 import { PageContainer } from "@/components/layout/page-container";
 import { CTASection } from "@/components/ui/cta-section";
 import { PageHero } from "@/components/ui/page-hero";
+import { createPageMetadata } from "@/lib/seo-metadata";
 
-export const metadata: Metadata = {
-  title: { absolute: "Candidate Registration | Talvanta Africa" },
-  description: "Register your professional information with Talvanta Africa in preparation for future opportunity matching and recruitment support.",
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "Candidate Registration",
+  description: "Register your professional information with Talvanta Africa for potential human-led recruitment review and future opportunities.",
+  path: "/candidate-registration",
+});
 
 const steps = [
   { title: "Profile organisation", text: "Candidate information may be structured into a clearer professional profile." },

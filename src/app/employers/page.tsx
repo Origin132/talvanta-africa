@@ -8,11 +8,13 @@ import { EmployerTechnology } from "@/components/employers/employer-technology";
 import { PageContainer } from "@/components/layout/page-container";
 import { CTASection } from "@/components/ui/cta-section";
 import { PageHero } from "@/components/ui/page-hero";
+import { createPageMetadata } from "@/lib/seo-metadata";
 
-export const metadata: Metadata = {
-  title: { absolute: "Recruitment Support for Employers | Talvanta Africa" },
-  description: "Discover how Talvanta Africa supports growing organisations with permanent recruitment, contract staffing, executive search, graduate recruitment, candidate screening, and structured hiring support.",
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "Recruitment Support for Employers",
+  description: "Discover permanent recruitment, contract staffing, executive search, graduate recruitment, candidate screening, and hiring support for employers.",
+  path: "/employers",
+});
 
 export default function EmployersPage() {
   return <>

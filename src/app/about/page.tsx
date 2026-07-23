@@ -6,11 +6,13 @@ import { MissionVision } from "@/components/about/mission-vision";
 import { ValuesGrid } from "@/components/about/values-grid";
 import { CTASection } from "@/components/ui/cta-section";
 import { PageHero } from "@/components/ui/page-hero";
+import { createPageMetadata } from "@/lib/seo-metadata";
 
-export const metadata: Metadata = {
-  title: { absolute: "About Talvanta Africa | Recruitment and Talent Solutions" },
-  description: "Learn about Talvanta Africa, an AI-supported and human-centred recruitment platform connecting qualified professionals with growing organisations across Nigeria and Africa.",
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "About Talvanta Africa",
+  description: "Learn about Talvanta Africa’s human-centred approach to recruitment technology, professional talent, and growing organisations.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

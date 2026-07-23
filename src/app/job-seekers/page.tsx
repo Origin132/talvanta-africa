@@ -8,11 +8,13 @@ import { ResponsibleMatching } from "@/components/job-seekers/responsible-matchi
 import { PageContainer } from "@/components/layout/page-container";
 import { CTASection } from "@/components/ui/cta-section";
 import { PageHero } from "@/components/ui/page-hero";
+import { createPageMetadata } from "@/lib/seo-metadata";
 
-export const metadata: Metadata = {
-  title: { absolute: "Career Support for Job Seekers | Talvanta Africa" },
-  description: "Learn how Talvanta Africa supports professionals, graduates, and job seekers in exploring opportunities, organising career information, and navigating recruitment processes.",
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "Career Support for Job Seekers",
+  description: "Learn how Talvanta Africa supports professionals, graduates, and job seekers with career information and responsible recruitment guidance.",
+  path: "/job-seekers",
+});
 
 export default function JobSeekersPage() {
   return <>

@@ -2,7 +2,7 @@
 
 Talvanta Africa is an AI-powered HR recruitment and talent-solutions project intended to connect qualified professionals with growing businesses across Nigeria and Africa.
 
-> **Sprint 7 status:** Valid employer and candidate submissions can be forwarded from the internal Next.js route handlers to separately configured Make.com webhooks. Make.com scenarios, Google Sheets, and recruiter email connections require manual configuration.
+> **Sprint 8 status:** Talia is available as a rule-based demonstration assistant using an internal Next.js route and approved responses. It does not call external AI services or store conversations. Employer and candidate submissions can still be forwarded to separately configured Make.com webhooks.
 
 ## Capstone context
 
@@ -87,8 +87,11 @@ All sample jobs, candidates, employers, testimonials, metrics, and other fiction
 
 - The homepage, About, Services, Employers, Job Seekers, Hire Talent, and Candidate Registration pages are developed; detailed content for the other public routes has not been developed.
 - Remaining public routes are branded placeholders.
-- Talia and other excluded integrations remain unimplemented. Webhook forwarding requires local or deployment configuration, and the repository does not automatically create Make.com scenarios, Sheets, or email connections.
+- Talia uses deterministic mock responses rather than live generative AI. Conversation state exists only in browser memory and is cleared by a refresh or page close.
+- Webhook forwarding requires local or deployment configuration, and the repository does not automatically create Make.com scenarios, Sheets, or email connections.
 - Approved Word planning documents are not yet available in this repository.
 - Planned libraries beyond the generated starter dependencies have not been installed.
 
-The next step is to import the approved source documents into `docs/`, review them, and use the approved content to guide the next page-development sprint.
+See [`docs/talia-mock-mode.md`](docs/talia-mock-mode.md) for Talia’s architecture, privacy limitations, responsible-recruitment boundaries, testing guidance, and future upgrade path.
+
+The next project-level step remains importing the approved source documents into `docs/` and reviewing them before expanding approved functionality.

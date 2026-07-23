@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
-import { TaliaChatButton } from "@/components/ui/talia-chat-button";
+import { TaliaLauncher } from "@/components/talia/talia-launcher";
 import "./globals.css";
 
 const inter = Inter({
@@ -42,7 +42,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <TaliaChatButton />
+        <TaliaLauncher />
       </body>
     </html>
   );

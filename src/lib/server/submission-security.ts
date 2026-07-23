@@ -11,8 +11,34 @@ async function hashIdentifier(value: string) {
 export function hasSameOrigin(request: Request) {
   const origin = request.headers.get("origin");
   if (!origin) return true;
-  try { return new URL(origin).host === new URL(request.url).host; }
-  catch { return false; }
+
+  try {
+    const requestOrigin = new URL(request.url).origin;
+    const allowedOrigins = new Set([requestOrigin]);
+    const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+    if (configuredSiteUrl) allowedOrigins.add(new URL(configuredSiteUrl).origin);
+
+    if (process.env.VERCEL === "1") {
+      const forwardedHost = request.headers
+        .get("x-forwarded-host")
+        ?.split(",")[0]
+        ?.trim();
+      const forwardedProtocol =
+        request.headers
+          .get("x-forwarded-proto")
+          ?.split(",")[0]
+          ?.trim() || "https";
+      if (forwardedHost && ["http", "https"].includes(forwardedProtocol)) {
+        allowedOrigins.add(
+          new URL(`${forwardedProtocol}://${forwardedHost}`).origin,
+        );
+      }
+    }
+
+    return allowedOrigins.has(new URL(origin).origin);
+  } catch {
+    return false;
+  }
 }
 
 export async function isRateLimited(

@@ -103,3 +103,6 @@ configuration. Set `NEXT_PUBLIC_SITE_URL` to the approved HTTPS production
 origin before deployment. See
 [`docs/production-readiness.md`](docs/production-readiness.md) for the complete
 pre-deployment, post-deployment, external-workflow, and rollback checklist.
+Use [`docs/vercel-deployment.md`](docs/vercel-deployment.md) for the controlled
+manual Vercel import, temporary `vercel.app` URL, environment configuration,
+production form testing, custom-domain, Git release, and recovery procedures.

@@ -4,6 +4,20 @@ function normaliseUrl(value: string) {
   return value.replace(/\/+$/, "");
 }
 
+function vercelDeploymentUrl() {
+  const value =
+    process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim() ||
+    process.env.VERCEL_URL?.trim();
+  if (!value) return undefined;
+
+  const candidate = value.startsWith("http") ? value : `https://${value}`;
+  const url = new URL(candidate);
+  if (url.protocol !== "https:") {
+    throw new Error("Vercel deployment URLs must use HTTPS.");
+  }
+  return normaliseUrl(url.origin);
+}
+
 export function getSiteUrl() {
   const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim();
   if (configured) {
@@ -19,8 +33,15 @@ export function getSiteUrl() {
     }
   }
 
+  if (process.env.VERCEL === "1") {
+    const vercelUrl = vercelDeploymentUrl();
+    if (vercelUrl) return vercelUrl;
+  }
+
   if (process.env.VERCEL_ENV === "production") {
-    throw new Error("NEXT_PUBLIC_SITE_URL must be configured for production.");
+    throw new Error(
+      "A production site URL must be available from NEXT_PUBLIC_SITE_URL or Vercel.",
+    );
   }
 
   return LOCAL_SITE_URL;

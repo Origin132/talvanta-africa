@@ -24,10 +24,16 @@ mode. Never use `NEXT_PUBLIC_` for a secret. `.env.local` is excluded by
 `.gitignore`.
 
 The metadata utility permits `http://localhost:3000` outside a Vercel production
-deployment so local builds and development remain usable. A Vercel production
-deployment fails metadata generation when the public site URL is missing or
-invalid. Equivalent validation must be included in any non-Vercel deployment
-process.
+deployment so local builds and development remain usable. On the first Vercel
+deployment, the trusted generated HTTPS deployment URL may bootstrap metadata.
+Set `NEXT_PUBLIC_SITE_URL` to the stable production origin and redeploy
+immediately afterwards. A Vercel production deployment fails metadata generation
+when neither a valid configured URL nor a trusted Vercel URL is available.
+Equivalent validation must be included in any non-Vercel deployment process.
+
+The full manual launch sequence, production form checklist, custom-domain
+procedure, Git workflow, and rollback guide are in
+[`vercel-deployment.md`](vercel-deployment.md).
 
 ## SEO and structured data
 

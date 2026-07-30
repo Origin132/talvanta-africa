@@ -1,13 +1,32 @@
 import type { Metadata } from "next";
-import { PlaceholderPage } from "@/components/pages/placeholder-page";
+import { JobsBrowser } from "@/components/jobs/jobs-browser";
+import { JobsEmptyState } from "@/components/jobs/jobs-empty-state";
+import { OpportunitiesProcess } from "@/components/jobs/opportunities-process";
+import { PageHero } from "@/components/ui/page-hero";
+import { getVerifiedJobs } from "@/lib/jobs";
 import { createPageMetadata } from "@/lib/seo-metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Career Opportunities",
-  description: "Review Talvanta Africa’s current jobs-page status and find guidance for candidate registration and future professional opportunities.",
+  title: "Career Opportunities | Talvanta Africa",
+  description: "Explore verified career opportunities through Talvanta Africa or register your professional profile for possible consideration when suitable roles become available.",
   path: "/jobs",
 });
 
 export default function JobsPage() {
-  return <PlaceholderPage title="Explore career opportunities" description="The Talvanta Africa jobs experience will help job seekers explore suitable career opportunities when approved job data and workflows are ready." futureContent="Job listings, search, filters, individual job pages, and applications are not currently available." primaryAction={{ label: "For Job Seekers", href: "/job-seekers" }} />;
+  const verifiedJobs = getVerifiedJobs();
+
+  return (
+    <>
+      <PageHero
+        eyebrow="Career Opportunities"
+        title="Find your next opportunity"
+        supportingText="Explore verified career opportunities published through Talvanta Africa, or register your professional profile for possible consideration when suitable roles become available."
+        primaryAction={{ label: "Register Your Profile", href: "/candidate-registration" }}
+        secondaryAction={{ label: "Candidate Support", href: "/job-seekers" }}
+        variation="dark"
+      />
+      {verifiedJobs.length === 0 ? <JobsEmptyState /> : <JobsBrowser jobs={verifiedJobs} />}
+      <OpportunitiesProcess />
+    </>
+  );
 }

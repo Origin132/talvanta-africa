@@ -19,3 +19,4 @@ None of the seven source files currently exists in this repository. Their status
 ## Implementation notes
 
 - Ticket 001 authorizes the July 2026 public-facing brand and homepage copy refinements implemented in the website. This ticket-specific authorization does not replace the pending approved company profile, website content, or brand-guideline source documents listed above.
+- Ticket 002 authorizes the July 2026 Jobs experience, including its empty verified-vacancy state, human-led opportunity process, typed vacancy model, local filtering architecture, and future job-details route. The repository contains no vacancy records until genuine roles and publication details are verified.

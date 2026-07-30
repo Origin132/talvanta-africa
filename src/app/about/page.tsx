@@ -1,29 +1,29 @@
 import type { Metadata } from "next";
-import { AboutIntroduction } from "@/components/about/about-introduction";
-import { AboutAudiences } from "@/components/about/audiences-section";
-import { HumanCentredTechnology } from "@/components/about/human-centred-technology";
+import { CompanyStory } from "@/components/about/company-story";
+import { FounderSection } from "@/components/about/founder-section";
 import { MissionVision } from "@/components/about/mission-vision";
 import { ValuesGrid } from "@/components/about/values-grid";
+import { WhyTalvanta } from "@/components/about/why-talvanta";
 import { CTASection } from "@/components/ui/cta-section";
 import { PageHero } from "@/components/ui/page-hero";
 import { createPageMetadata } from "@/lib/seo-metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "About Talvanta Africa",
-  description: "Learn about Talvanta Africa’s human-centred approach to recruitment technology, professional talent, and growing organisations.",
+  title: "About Talvanta Africa | Human-Led Recruitment Technology",
+  description: "Learn about Talvanta Africa, its founder, mission, values, and approach to technology-enabled, human-led recruitment across Africa.",
   path: "/about",
 });
 
 export default function AboutPage() {
   return (
     <>
-      <PageHero eyebrow="About Talvanta Africa" title="Recruitment technology designed around people" supportingText="Talvanta Africa combines organised recruitment processes, intelligent tools, and human oversight to support employers and professionals across Nigeria and Africa." primaryAction={{ label: "Explore Our Services", href: "/services" }} secondaryAction={{ label: "Contact Us", href: "/contact" }} variation="dark" />
-      <AboutIntroduction />
+      <PageHero eyebrow="About Talvanta Africa" title="Technology-enabled recruitment with people at the centre" supportingText="Talvanta Africa was created to simplify recruitment by combining structured digital workflows with responsible human decision-making. Our goal is to help employers connect with talent while providing professionals with a clear and organised recruitment experience." primaryAction={{ label: "Explore Our Services", href: "/services" }} secondaryAction={{ label: "Contact Us", href: "/contact" }} variation="dark" />
+      <CompanyStory />
+      <FounderSection />
       <MissionVision />
       <ValuesGrid />
-      <HumanCentredTechnology />
-      <AboutAudiences />
-      <CTASection heading="Explore a clearer approach to recruitment" supportingText="Discover how Talvanta Africa supports employers and professionals through structured services, intelligent tools, and human-centred guidance." primaryAction={{ label: "Explore Services", href: "/services" }} secondaryAction={{ label: "Contact Talvanta Africa", href: "/contact" }} />
+      <WhyTalvanta />
+      <CTASection heading="Start your journey with Talvanta Africa" supportingText="Whether you are seeking talent or exploring career opportunities, Talvanta Africa provides a structured pathway to begin." primaryAction={{ label: "Hire Talent", href: "/hire-talent" }} secondaryAction={{ label: "Register Your Profile", href: "/candidate-registration" }} />
     </>
   );
 }

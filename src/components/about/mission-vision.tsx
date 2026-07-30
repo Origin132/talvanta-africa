@@ -1,8 +1,8 @@
 import { PageContainer } from "@/components/layout/page-container";
 
 const statements = [
-  { label: "Mission", heading: "Our Mission", text: "To connect growing organisations with suitable professionals through recruitment services that are organised, accessible, intelligent, and human-centred.", style: "bg-navy text-white", labelStyle: "text-gold" },
-  { label: "Vision", heading: "Our Vision", text: "To become a trusted African recruitment platform that helps businesses and professionals navigate opportunity through responsible technology and professional human support.", style: "border border-border-grey bg-white text-slate", labelStyle: "text-green" },
+  { label: "Mission", heading: "Our Mission", text: "To support organisations and professionals through structured recruitment processes that combine digital efficiency with responsible human oversight.", style: "bg-navy text-white", labelStyle: "text-gold" },
+  { label: "Vision", heading: "Our Vision", text: "To become a trusted recruitment technology platform that helps organisations discover talent and enables professionals to access meaningful career opportunities across Africa.", style: "border border-border-grey bg-white text-slate", labelStyle: "text-green" },
 ] as const;
 
 export function MissionVision() {

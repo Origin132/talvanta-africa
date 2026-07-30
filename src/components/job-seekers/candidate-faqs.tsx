@@ -1,13 +1,65 @@
-import { FAQSection, type FAQ } from "@/components/audiences/faq-section";
+import Link from "next/link";
+import { PageContainer } from "@/components/layout/page-container";
+import { SectionHeading } from "@/components/ui/section-heading";
 
-const faqs: readonly FAQ[] = [
-  { question: "Does registering guarantee that I will find a job?", answer: "No. Registration allows Talvanta Africa to organise your professional information and consider it in relation to relevant opportunities. It does not guarantee interviews, placement, or employment." },
-  { question: "Does registration count as applying for every available job?", answer: "No. Candidate registration creates a professional profile or expression of interest. Specific vacancies may require a separate application or confirmation of interest." },
-  { question: "Will every registered candidate be contacted?", answer: "Not necessarily. Communication depends on available opportunities, candidate relevance, employer requirements, and recruitment activity." },
-  { question: "Can artificial intelligence reject my application?", answer: "Talvanta Africa does not intend Talia or another AI tool to make final candidate-rejection or hiring decisions. Technology may support information organisation and matching guidance, while recruitment decisions remain human-led." },
-  { question: "Should I pay to apply for a job?", answer: "The website must not request candidate payment merely to submit an application or register professional information. Candidates should be cautious about any communication requesting unofficial recruitment payments." },
-  { question: "Can I register without seeing a suitable vacancy?", answer: "The future candidate-registration process may allow professionals to express interest and provide career information even when a suitable vacancy is not currently displayed. Registration still does not guarantee future contact." },
-  { question: "Can Talvanta Africa help me rewrite my CV?", answer: "Talvanta Africa currently focuses on recruitment guidance, registration, and opportunity support. CV-writing is not currently offered as a service." },
-];
+const questions = [
+  {
+    question: "Does registration mean I have applied for a job?",
+    answer: "No. Candidate registration creates a professional profile unless a verified vacancy and application pathway are specifically identified.",
+  },
+  {
+    question: "Will I be contacted after registration?",
+    answer: "Talvanta Africa may contact you when clarification, further information, or participation in a relevant recruitment process is required. Contact is not guaranteed.",
+  },
+  {
+    question: "Can I register when no vacancies are open?",
+    answer: "Yes. You may register your professional profile for recruitment-related administration and possible consideration when relevant opportunities become available.",
+  },
+  {
+    question: "Does Talvanta Africa make hiring decisions?",
+    answer: "No. Employers remain responsible for interviews, assessment, selection, employment terms, and final hiring decisions.",
+  },
+  {
+    question: "Should I send sensitive personal information?",
+    answer: "No. Submit only information relevant to recruitment and follow the guidance provided on the registration form and Privacy page.",
+  },
+  {
+    question: "Where can I view current opportunities?",
+    answer: "Verified opportunities are published on the Jobs page when available.",
+    href: "/jobs",
+  },
+] as const;
 
-export function CandidateFaqs() { return <FAQSection eyebrow="Job Seeker FAQs" heading="Common questions about opportunities and registration" items={faqs} />; }
+export function CandidateFaqs() {
+  return (
+    <section className="bg-soft-grey">
+      <PageContainer className="py-16 sm:py-24">
+        <SectionHeading
+          eyebrow="Common Questions"
+          heading="Questions professionals often ask"
+        />
+        <div className="mt-10 grid gap-5 md:grid-cols-2">
+          {questions.map((item) => (
+            <article
+              key={item.question}
+              className="rounded-[var(--radius)] border border-border-grey bg-white p-6 shadow-sm"
+            >
+              <h3 className="text-xl font-extrabold leading-snug text-navy">
+                {item.question}
+              </h3>
+              <p className="mt-3 leading-7 text-slate">{item.answer}</p>
+              {"href" in item ? (
+                <Link
+                  href={item.href}
+                  className="mt-4 inline-flex min-h-11 items-center font-bold text-green underline underline-offset-4 focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-gold"
+                >
+                  View Career Opportunities
+                </Link>
+              ) : null}
+            </article>
+          ))}
+        </div>
+      </PageContainer>
+    </section>
+  );
+}

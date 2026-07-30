@@ -1,5 +1,52 @@
-import { ChecklistSection } from "@/components/audiences/checklist-section";
+import { PageContainer } from "@/components/layout/page-container";
+import { SectionHeading } from "@/components/ui/section-heading";
 
-const items = ["Full name", "Email address", "Telephone number", "Current location", "Preferred work location", "Current or most recent job title", "Employment history", "Education", "Professional qualifications", "Key skills", "Industry experience", "Preferred employment type", "Workplace preference", "Salary expectations, where appropriate", "Availability", "Career interests", "Curriculum vitae", "Relevant portfolio or professional profile, where applicable"] as const;
+const preparationItems = [
+  {
+    heading: "Contact Information",
+    text: "Use an email address and telephone number that you can access reliably.",
+  },
+  {
+    heading: "Employment History",
+    text: "Prepare accurate information about your current or previous roles, responsibilities, and relevant experience.",
+  },
+  {
+    heading: "Education and Qualifications",
+    text: "Provide truthful information about qualifications, training, and professional development relevant to your career interests.",
+  },
+  {
+    heading: "Core Skills",
+    text: "Identify the technical, professional, and interpersonal skills that best represent your experience.",
+  },
+  {
+    heading: "Career Preferences",
+    text: "Consider the industries, locations, employment arrangements, and types of opportunities you are interested in.",
+  },
+] as const;
 
-export function CandidatePreparation() { return <ChecklistSection eyebrow="Before You Register" heading="Information that can help organise your professional profile" items={items} privacyNote="Candidates should submit only accurate and relevant professional information. Sensitive personal data should not be included unless it is genuinely required and collected through an appropriate process." />; }
+export function CandidatePreparation() {
+  return (
+    <section className="bg-soft-grey">
+      <PageContainer className="py-16 sm:py-24">
+        <SectionHeading
+          eyebrow="Prepare Your Information"
+          heading="What to have ready before registration"
+        />
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {preparationItems.map((item, index) => (
+            <article
+              key={item.heading}
+              className="rounded-[var(--radius)] border border-border-grey bg-white p-6 shadow-sm"
+            >
+              <span className="font-heading text-sm font-extrabold text-green" aria-hidden="true">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 className="mt-4 text-xl font-extrabold text-navy">{item.heading}</h3>
+              <p className="mt-3 leading-7 text-slate">{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </PageContainer>
+    </section>
+  );
+}

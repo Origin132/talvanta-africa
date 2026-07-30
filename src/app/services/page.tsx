@@ -20,12 +20,12 @@ export default function ServicesPage() {
   return (
     <>
       {services.map((service) => <JsonLd key={service.id} data={serviceStructuredData(service.title, service.summary)} />)}
-      <PageHero eyebrow="Recruitment Services" title="Flexible recruitment support for growing organisations" supportingText="Talvanta Africa provides structured recruitment services designed to help employers clarify their hiring needs, identify suitable professionals, and manage recruitment activities with human oversight." primaryAction={{ label: "Hire Talent", href: "/hire-talent" }} secondaryAction={{ label: "Contact Us", href: "/contact" }} variation="dark" />
+      <PageHero eyebrow="Recruitment Services" title="Flexible recruitment support for growing organisations" supportingText="Talvanta Africa provides structured recruitment services designed to help employers clarify their hiring needs, identify suitable professionals, and manage recruitment activities with human oversight." primaryAction={{ label: "Hire Talent", href: "/for-employers" }} secondaryAction={{ label: "Contact Us", href: "/contact" }} variation="dark" />
       <ServicesGrid />
       <ServiceDetails />
       <ServiceProcess />
       <ResponsibleTechnology />
-      <CTASection heading="Tell us what your organisation needs" supportingText="Share your recruitment requirement or contact Talvanta Africa to discuss the type of support most appropriate for your organisation." primaryAction={{ label: "Hire Talent", href: "/hire-talent" }} secondaryAction={{ label: "Contact Us", href: "/contact" }} />
+      <CTASection heading="Tell us what your organisation needs" supportingText="Share your recruitment requirement or contact Talvanta Africa to discuss the type of support most appropriate for your organisation." primaryAction={{ label: "Hire Talent", href: "/for-employers" }} secondaryAction={{ label: "Contact Us", href: "/contact" }} />
     </>
   );
 }

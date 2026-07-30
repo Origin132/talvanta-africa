@@ -15,8 +15,8 @@ const linkGroups = [
   {
     title: "Employers",
     links: [
-      { label: "For Employers", href: "/employers" },
-      { label: "Hire Talent", href: "/hire-talent" },
+      { label: "For Employers", href: "/for-employers" },
+      { label: "Hire Talent", href: "/for-employers" },
       { label: "Recruitment Services", href: "/services" },
     ],
   },

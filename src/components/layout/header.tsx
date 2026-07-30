@@ -32,7 +32,7 @@ export function Header() {
         </nav>
 
         <div className="hidden xl:block">
-          <ButtonLink href="/hire-talent">Hire Talent</ButtonLink>
+          <ButtonLink href="/for-employers">Hire Talent</ButtonLink>
         </div>
         <MobileNavigation items={primaryNavigation} />
       </PageContainer>

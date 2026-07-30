@@ -32,7 +32,7 @@ export const TALIA_RESPONSES: Record<TaliaCategory, TaliaResponse> = {
   employerSupport: {
     content:
       "Talvanta Africa supports organisations with permanent recruitment, temporary and contract staffing, executive search, graduate recruitment, candidate screening, and HR advisory. You can submit your requirements through the Hire Talent form.",
-    internalLink: { label: "Hire talent", href: "/hire-talent" },
+    internalLink: { label: "Hire talent", href: "/for-employers" },
   },
   candidateSupport: {
     content:
@@ -80,7 +80,7 @@ export const TALIA_RESPONSES: Record<TaliaCategory, TaliaResponse> = {
   hiringProcess: {
     content:
       "Employers can review the service options, submit a hiring enquiry, provide role information, and wait for the Talvanta Africa team to review the request. Submitting an enquiry does not guarantee that Talvanta Africa will accept or complete the assignment.",
-    internalLink: { label: "Submit a hiring enquiry", href: "/hire-talent" },
+    internalLink: { label: "Submit a hiring enquiry", href: "/for-employers" },
   },
   candidateRegistration: {
     content:

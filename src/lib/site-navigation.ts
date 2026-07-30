@@ -8,7 +8,7 @@ export const primaryNavigation: readonly NavigationItem[] = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Jobs", href: "/jobs" },
-  { label: "For Employers", href: "/employers" },
+  { label: "For Employers", href: "/for-employers" },
   { label: "For Job Seekers", href: "/job-seekers" },
   { label: "Contact", href: "/contact" },
   { label: "FAQs", href: "/faqs" },

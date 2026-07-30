@@ -26,7 +26,7 @@ export function HomeHero() {
             Talvanta Africa helps organisations simplify recruitment and helps professionals showcase their skills through structured, technology-enabled, human-led recruitment services.
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-3">
-            <ButtonLink href="/hire-talent" variant="secondary">Hire Talent</ButtonLink>
+            <ButtonLink href="/for-employers" variant="secondary">Hire Talent</ButtonLink>
             <ButtonLink href="/candidate-registration" variant="light">Register Your Profile</ButtonLink>
           </div>
           <p className="mt-7 border-l-2 border-gold pl-4 text-sm font-semibold text-white/85">

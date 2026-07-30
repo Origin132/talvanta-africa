@@ -4,7 +4,7 @@ import { PageContainer } from "@/components/layout/page-container";
 const items = [
   {
     question: "Which form should employers use?",
-    answer: <>Use the <Link className="font-bold text-green underline" href="/hire-talent">Hire Talent form</Link> when you have a recruitment requirement. Use the contact form for general questions.</>,
+    answer: <>Use the <Link className="font-bold text-green underline" href="/for-employers">Hire Talent form</Link> when you have a recruitment requirement. Use the contact form for general questions.</>,
   },
   {
     question: "Which form should job seekers use?",

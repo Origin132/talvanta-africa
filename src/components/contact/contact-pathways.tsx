@@ -7,7 +7,7 @@ const pathways = [
     marker: "E",
     heading: "Employers",
     text: "Tell us about your organisation, hiring needs, and the type of recruitment support you require.",
-    actions: [{ label: "Request Recruitment Support", href: "/hire-talent" }],
+    actions: [{ label: "Request Recruitment Support", href: "/for-employers" }],
   },
   {
     marker: "P",

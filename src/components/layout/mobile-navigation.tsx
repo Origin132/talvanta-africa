@@ -63,7 +63,7 @@ export function MobileNavigation({ items }: MobileNavigationProps) {
             ))}
           </ul>
           <ButtonLink
-            href="/hire-talent"
+            href="/for-employers"
             className="mt-4 w-full"
             variant="primary"
           >

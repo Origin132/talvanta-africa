@@ -7,7 +7,7 @@ const audiences = [
     heading: "For Employers",
     text: "Find qualified professionals for permanent, temporary, contract, graduate, and specialist roles with structured recruitment support.",
     action: "Hire Talent",
-    href: "/hire-talent",
+    href: "/for-employers",
     accent: "bg-navy text-white",
     symbolStyle: "bg-gold text-navy",
     buttonVariant: "secondary" as const,

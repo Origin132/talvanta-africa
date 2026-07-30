@@ -23,7 +23,7 @@ export default function AboutPage() {
       <MissionVision />
       <ValuesGrid />
       <WhyTalvanta />
-      <CTASection heading="Start your journey with Talvanta Africa" supportingText="Whether you are seeking talent or exploring career opportunities, Talvanta Africa provides a structured pathway to begin." primaryAction={{ label: "Hire Talent", href: "/hire-talent" }} secondaryAction={{ label: "Register Your Profile", href: "/candidate-registration" }} />
+      <CTASection heading="Start your journey with Talvanta Africa" supportingText="Whether you are seeking talent or exploring career opportunities, Talvanta Africa provides a structured pathway to begin." primaryAction={{ label: "Hire Talent", href: "/for-employers" }} secondaryAction={{ label: "Register Your Profile", href: "/candidate-registration" }} />
     </>
   );
 }

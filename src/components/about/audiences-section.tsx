@@ -3,7 +3,7 @@ import { ButtonLink } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 const audiences = [
-  { marker: "E", title: "Employers", text: "Organisations seeking structured support for permanent, temporary, contract, graduate, executive, or specialist recruitment needs.", action: "For Employers", href: "/employers" },
+  { marker: "E", title: "Employers", text: "Organisations seeking structured support for permanent, temporary, contract, graduate, executive, or specialist recruitment needs.", action: "For Employers", href: "/for-employers" },
   { marker: "J", title: "Job Seekers", text: "Professionals and early-career candidates exploring relevant opportunities, career guidance, and structured registration.", action: "For Job Seekers", href: "/job-seekers" },
   { marker: "R", title: "Recruitment Teams", text: "Recruitment professionals seeking clearer lead information, organised workflows, and technology-supported administration." },
 ] as const;

@@ -14,7 +14,7 @@ export const services: readonly Service[] = [
     summary: "Support for organisations seeking qualified professionals for long-term roles.",
     inclusions: ["Clarifying role requirements", "Organising vacancy information", "Supporting candidate sourcing", "Reviewing potential matches", "Supporting shortlisting and communication", "Maintaining human oversight throughout the process"],
     action: "Discuss a Permanent Role",
-    href: "/hire-talent",
+    href: "/for-employers",
   },
   {
     id: "temporary-contract-staffing",
@@ -22,7 +22,7 @@ export const services: readonly Service[] = [
     summary: "Flexible recruitment support for temporary assignments, project work, and contract positions.",
     inclusions: ["Short-term staffing needs", "Project-based recruitment", "Contract role support", "Availability and location considerations", "Structured candidate information", "Clear communication of assignment expectations"],
     action: "Submit a Staffing Requirement",
-    href: "/hire-talent",
+    href: "/for-employers",
   },
   {
     id: "executive-search",
@@ -38,7 +38,7 @@ export const services: readonly Service[] = [
     summary: "Structured support for internships, graduate schemes, trainee roles, and early-career opportunities.",
     inclusions: ["Graduate and internship role planning", "Entry-level requirement clarification", "Candidate registration support", "Early-career skills review", "Organised application information", "Human-led interview and selection decisions"],
     action: "Plan a Graduate Recruitment Campaign",
-    href: "/hire-talent",
+    href: "/for-employers",
   },
   {
     id: "candidate-screening",

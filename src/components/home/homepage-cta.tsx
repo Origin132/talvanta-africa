@@ -5,7 +5,7 @@ export function HomepageCTA() {
     <CTASection
       heading="Ready to take the next step?"
       supportingText="Whether you are building a team or exploring your next career opportunity, Talvanta Africa provides a clear starting point."
-      primaryAction={{ label: "Hire Talent", href: "/hire-talent" }}
+      primaryAction={{ label: "Hire Talent", href: "/for-employers" }}
       secondaryAction={{ label: "Register Your Profile", href: "/candidate-registration" }}
       variation="dark"
     />

@@ -15,7 +15,7 @@ export function PlaceholderPage({
   title,
   description,
   futureContent,
-  eyebrow = "Sprint 1 placeholder",
+  eyebrow = "Service information",
   primaryAction,
   secondaryAction,
 }: PlaceholderPageProps) {
@@ -32,7 +32,7 @@ export function PlaceholderPage({
         <PageContainer className="py-14 sm:py-16">
           <SectionHeading
             eyebrow="Content status"
-            heading="Detailed content is coming in a later sprint"
+            heading="More information will be available as this service develops"
             supportingText={futureContent}
           />
         </PageContainer>

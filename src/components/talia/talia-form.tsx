@@ -78,7 +78,7 @@ export function TaliaForm({
         </button>
       </div>
       <p className="mt-2 text-[0.6875rem] leading-4 text-slate">
-        Talia is a rule-based demonstration assistant. Messages are processed
+        Talia is a rule-based digital assistant. Messages are processed
         by this website to select an approved response. Do not include sensitive
         personal information.
       </p>

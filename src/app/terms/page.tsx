@@ -11,7 +11,7 @@ export const metadata: Metadata = createPageMetadata({
 
 const sections = [
   ["Website use", "Use this website lawfully and do not attempt to disrupt it, bypass safeguards, submit malicious material, impersonate another person, or provide information you are not authorised to share."],
-  ["Demonstration status", "This is a demonstration project. Features, integrations, availability, and content may change. Placeholder or demonstration content must not be treated as a live vacancy, employer relationship, testimonial, or service commitment."],
+  ["Platform status", "Talvanta Africa is an early-stage recruitment technology platform. Features, integrations, availability, and content may change. Published information must not be treated as a live vacancy, employer relationship, testimonial, or service commitment unless Talvanta Africa confirms it."],
   ["Recruitment disclaimer", "Information on this website is general recruitment information. A form submission does not create an employment, agency, consultancy, or recruitment-services agreement."],
   ["No employment or hiring guarantee", "Candidate registration does not guarantee contact, shortlisting, an interview, placement, or employment. An employer enquiry does not guarantee candidate availability, service acceptance, a successful hire, or any particular outcome."],
   ["Human-led recruitment", "Recruitment and employment decisions remain human-led. Talvanta Africa’s website and Talia do not automatically score, rank, shortlist, reject, select, or hire candidates."],
@@ -26,7 +26,7 @@ export default function TermsPage() {
       <PageHero
         eyebrow="Website terms"
         title="Terms of use"
-        supportingText="Important conditions, recruitment disclaimers, and responsible-use boundaries for this demonstration website."
+        supportingText="Important conditions, recruitment disclaimers, and responsible-use boundaries for this website."
         variation="dark"
       />
       <PageContainer className="py-16 sm:py-24">

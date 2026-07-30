@@ -20,14 +20,14 @@ export function HomeHero() {
             AI-Powered Recruitment and Talent Solutions
           </p>
           <h1 className="mt-5 max-w-[18ch] text-balance text-[2.125rem] font-extrabold leading-[1.12] tracking-tight min-[360px]:text-4xl sm:text-5xl lg:text-6xl">
-            Connecting exceptional talent with growing businesses.
+            Connecting African Talent with Opportunity Through Technology and Human Expertise
           </h1>
           <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-white/85 sm:text-xl">
-            Talvanta Africa helps organisations find suitable professionals while supporting job seekers in discovering relevant career opportunities across Nigeria and Africa.
+            Talvanta Africa helps organisations simplify recruitment and helps professionals showcase their skills through structured, technology-enabled, human-led recruitment services.
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-3">
             <ButtonLink href="/hire-talent" variant="secondary">Hire Talent</ButtonLink>
-            <ButtonLink href="/jobs" variant="light">Find a Job</ButtonLink>
+            <ButtonLink href="/candidate-registration" variant="light">Register Your Profile</ButtonLink>
           </div>
           <p className="mt-7 border-l-2 border-gold pl-4 text-sm font-semibold text-white/85">
             Intelligent recruitment support. Human-centred decisions.

@@ -25,7 +25,7 @@ export default function PrivacyPage() {
       <PageHero
         eyebrow="Information notice"
         title="Privacy policy"
-        supportingText="A plain-language explanation of information handling on the Talvanta Africa demonstration website."
+        supportingText="A plain-language explanation of information handling on the Talvanta Africa website."
         variation="dark"
       />
       <PageContainer className="py-16 sm:py-24">

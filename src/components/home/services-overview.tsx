@@ -32,7 +32,7 @@ export function ServicesOverview() {
           ))}
         </div>
         <div className="mt-9">
-          <ButtonLink href="/services" variant="outline">Explore All Services</ButtonLink>
+          <ButtonLink href="/services" variant="outline">Explore Our Services</ButtonLink>
         </div>
       </PageContainer>
     </section>

@@ -15,3 +15,7 @@ This directory is the home for approved product, content, brand, automation, AI-
 | `technical-specification.md` | Approved architecture, data, security, testing, deployment, and implementation requirements | **Pending import from the approved source document** |
 
 None of the seven source files currently exists in this repository. Their status must remain pending until the approved source content is supplied and imported. When importing, preserve meaning and approvals, identify any conversion uncertainty, and do not silently add unapproved requirements.
+
+## Implementation notes
+
+- Ticket 001 authorizes the July 2026 public-facing brand and homepage copy refinements implemented in the website. This ticket-specific authorization does not replace the pending approved company profile, website content, or brand-guideline source documents listed above.

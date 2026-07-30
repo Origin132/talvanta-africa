@@ -41,7 +41,7 @@ export function CookieConsent() {
             Local website preferences
           </h2>
           <p className="mt-1 text-sm leading-6 text-slate">
-            This demonstration does not use analytics. Your choice is stored
+            This website does not currently use analytics. Your choice is stored
             locally so this notice does not appear on every visit. Essential
             website features remain available.{" "}
             <Link href="/privacy" className="font-bold text-green underline underline-offset-2">

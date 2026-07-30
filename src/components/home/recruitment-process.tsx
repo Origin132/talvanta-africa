@@ -39,7 +39,7 @@ export function RecruitmentProcess() {
   return (
     <section className="bg-soft-grey">
       <PageContainer className="py-16 sm:py-24">
-        <SectionHeading eyebrow="How It Works" heading="Clear recruitment journeys for employers and job seekers" />
+        <SectionHeading eyebrow="How Talvanta Works" heading="Clear recruitment journeys for employers and job seekers" />
         <div className="mt-10 grid gap-8 lg:grid-cols-2">
           {processGroups.map((group) => (
             <article key={group.audience} className="rounded-[var(--radius)] border border-border-grey bg-white p-6 shadow-sm sm:p-8">

@@ -1,12 +1,10 @@
 import { AudienceCards } from "@/components/home/audience-cards";
 import { HomeHero } from "@/components/home/home-hero";
 import { HomepageCTA } from "@/components/home/homepage-cta";
-import { IndustriesSection } from "@/components/home/industries-section";
+import { PlatformStandards } from "@/components/home/platform-standards";
 import { RecruitmentProcess } from "@/components/home/recruitment-process";
 import { ServicesOverview } from "@/components/home/services-overview";
 import { TaliaSection } from "@/components/home/talia-section";
-import { TestimonialsSection } from "@/components/home/testimonials-section";
-import { WhyChooseUs } from "@/components/home/why-choose-us";
 import { createPageMetadata } from "@/lib/seo-metadata";
 
 export const metadata: Metadata = createPageMetadata({
@@ -20,11 +18,9 @@ export default function Home() {
     <>
       <HomeHero />
       <AudienceCards />
-      <ServicesOverview />
       <RecruitmentProcess />
-      <WhyChooseUs />
-      <IndustriesSection />
-      <TestimonialsSection />
+      <ServicesOverview />
+      <PlatformStandards />
       <TaliaSection />
       <HomepageCTA />
     </>

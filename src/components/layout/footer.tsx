@@ -25,7 +25,7 @@ const linkGroups = [
     links: [
       { label: "For Job Seekers", href: "/job-seekers" },
       { label: "Explore Jobs", href: "/jobs" },
-      { label: "Candidate Registration", href: "/candidate-registration" },
+      { label: "Register Your Profile", href: "/candidate-registration" },
     ],
   },
 ] as const;
@@ -78,7 +78,7 @@ export function Footer() {
           <div>
             <p>© {year} Talvanta Africa.</p>
             <p className="mt-2 max-w-2xl">
-              Demonstration project: placeholder content and features are clearly identified and are not live recruitment services.
+              Talvanta Africa is an early-stage recruitment technology platform. Recruitment support, candidate consideration, and vacancy availability remain subject to human review and confirmation.
             </p>
           </div>
           <nav aria-label="Legal links">

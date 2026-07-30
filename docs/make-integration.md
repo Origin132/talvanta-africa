@@ -84,7 +84,8 @@ Make.com should assign the default status `New`. The website does not assign wor
 
 ## Recruiter notification templates
 
-Make.com—not Next.js—should send these notifications. User confirmation emails remain out of scope.
+Make.com—not Next.js—should send recruiter notifications and submitter
+acknowledgement emails.
 
 Employer subject: `New Talvanta Africa Hiring Enquiry — {{jobTitle}} — {{organisationName}}`
 
@@ -99,6 +100,14 @@ Keep notifications concise and retain long free-text details in the worksheet. D
 Contact subject: `New Talvanta Africa Contact Enquiry — {{enquiryType}} — {{subject}}`
 
 Use the same concise notification structure: submission reference and time, name, organisation where supplied, email, telephone where supplied, enquiry type, subject, a concise message excerpt, and a workbook or row link where practical.
+
+## Submitter acknowledgement emails
+
+Acknowledgement emails must be configured and tested in Make.com; the website
+does not send them directly. Use the exact recipient, reference, timestamp,
+workflow, and context mappings in `acknowledgement-email-mapping.md`. Do not
+include full private submissions when a concise acknowledgement is sufficient,
+and do not treat a submission reference as an authentication credential.
 
 ## Failure and duplicate handling
 

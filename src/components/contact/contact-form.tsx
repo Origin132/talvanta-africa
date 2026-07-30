@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { PageContainer } from "@/components/layout/page-container";
 import { Button } from "@/components/ui/button";
@@ -111,16 +112,14 @@ export function ContactForm() {
       }
       if ([400, 413, 415].includes(result.status)) {
         setFeedback({
-          message:
-            "The enquiry could not be read. Review the form and try again.",
+          message: "We could not submit your enquiry. Please review the form and try again.",
         });
         setState("failure");
         return;
       }
       if ([502, 503, 504].includes(result.status)) {
         setFeedback({
-          message:
-            "Your enquiry could not be forwarded for review. Your form entries are still available, so you can try again.",
+          message: "We could not submit your enquiry. Please review the form and try again.",
         });
         setState("failure");
         return;
@@ -137,8 +136,7 @@ export function ContactForm() {
       throw new Error("Unexpected response");
     } catch {
       setFeedback({
-        message:
-          "Your enquiry could not be submitted. Your form entries are still available, so you can try again.",
+        message: "We could not submit your enquiry. Please review the form and try again.",
       });
       setState("failure");
     }
@@ -147,54 +145,95 @@ export function ContactForm() {
   return (
     <section id="contact-form" className="bg-soft-grey" aria-labelledby="contact-form-heading">
       <PageContainer className="py-16 sm:py-24">
-        <div className="mx-auto max-w-4xl">
+        <div>
           <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-green">
             Contact form
           </p>
           <h2 id="contact-form-heading" className="mt-3 text-3xl font-extrabold text-navy sm:text-4xl">
-            Send an enquiry
+            Send a General Enquiry
           </h2>
           <p className="mt-4 max-w-2xl leading-8 text-slate">
-            Fields marked with an asterisk are required. Do not include passwords,
-            banking details, government identification numbers, medical
-            information, or other sensitive personal information.
+            Provide clear and accurate information so your enquiry can be reviewed and directed appropriately.
           </p>
 
-          <form className="mt-10 space-y-8" noValidate onSubmit={submit} aria-busy={state === "loading"}>
-            <FormErrorSummary errors={errors} />
-            <HoneypotField />
-            <FormSection legend="Your enquiry">
-              <TextField label="Full name" name="fullName" required minLength={2} maxLength={120} autoComplete="name" error={errors.fullName} />
-              <TextField label="Organisation" name="organisation" maxLength={120} autoComplete="organization" helperText="Optional." error={errors.organisation} />
-              <TextField label="Email" name="email" type="email" required maxLength={254} autoComplete="email" error={errors.email} />
-              <TextField label="Telephone" name="telephone" type="tel" minLength={7} maxLength={25} autoComplete="tel" helperText="Optional." error={errors.telephone} />
-              <SelectField label="Enquiry type" name="enquiryType" required options={enquiryTypes} error={errors.enquiryType} />
-              <TextField label="Subject" name="subject" required minLength={3} maxLength={160} error={errors.subject} />
-              <FullWidth>
-                <TextareaField label="Message" name="message" required minLength={20} maxLength={3000} rows={7} error={errors.message} />
-              </FullWidth>
-              <FullWidth>
-                <Declaration name="consent" required error={errors.consent}>
-                  I consent to Talvanta Africa using this information to review my enquiry and contact me about it.
-                </Declaration>
-              </FullWidth>
-            </FormSection>
+          <div className="mt-10 grid gap-8 lg:grid-cols-[2fr_1fr] lg:items-start">
+            <form className="space-y-8" noValidate onSubmit={submit} aria-busy={state === "loading"}>
+              <FormErrorSummary errors={errors} />
+              <HoneypotField />
+              <FormSection legend="Your enquiry">
+                <TextField label="Full Name" name="fullName" required minLength={2} maxLength={120} autoComplete="name" error={errors.fullName} />
+                <TextField label="Organisation" name="organisation" maxLength={120} autoComplete="organization" helperText="Optional." error={errors.organisation} />
+                <TextField label="Email Address" name="email" type="email" required maxLength={254} autoComplete="email" error={errors.email} />
+                <TextField label="Telephone" name="telephone" type="tel" minLength={7} maxLength={25} autoComplete="tel" helperText="Optional." error={errors.telephone} />
+                <SelectField label="Enquiry type" name="enquiryType" required options={enquiryTypes} error={errors.enquiryType} />
+                <TextField label="Subject" name="subject" required minLength={3} maxLength={160} error={errors.subject} />
+                <FullWidth>
+                  <TextareaField
+                    label="How can we help?"
+                    name="message"
+                    required
+                    minLength={20}
+                    maxLength={3000}
+                    rows={7}
+                    helperText="Do not include passwords, financial information, identity-document numbers, or other unnecessary sensitive information."
+                    error={errors.message}
+                  />
+                </FullWidth>
+                <FullWidth>
+                  <Declaration name="consent" required error={errors.consent}>
+                    I consent to Talvanta Africa using this information to review my enquiry and contact me about it.
+                  </Declaration>
+                </FullWidth>
+              </FormSection>
 
-            <div className="space-y-5 pb-16">
-              <Button type="submit" disabled={state === "loading"} className="w-full sm:w-auto">
-                {state === "loading" ? "Submitting..." : "Submit Enquiry"}
-              </Button>
-              <FormStatus
-                state={state}
-                feedback={feedback}
-                successHeading="Enquiry submitted"
-                successMessage="Your enquiry was validated and forwarded for review. Keep the submission reference for future communication."
-                actions={[{ label: "Return home", href: "/" }, { label: "View FAQs", href: "/faqs" }]}
-              />
-            </div>
-          </form>
+              <div className="space-y-5 pb-8">
+                <Button type="submit" disabled={state === "loading"} className="w-full sm:w-auto">
+                  {state === "loading" ? "Submitting..." : "Send Enquiry"}
+                </Button>
+                <FormStatus
+                  state={state}
+                  feedback={feedback}
+                  successHeading="Your enquiry has been received"
+                  successMessage="Thank you for contacting Talvanta Africa. Your enquiry will be reviewed during business hours. Please keep any submission reference displayed below for your records."
+                  actions={[{ label: "Return home", href: "/" }, { label: "View FAQs", href: "/faqs" }]}
+                />
+              </div>
+            </form>
+
+            <aside className="rounded-[var(--radius)] border border-border-grey bg-white p-6 shadow-sm sm:p-7" aria-labelledby="before-contact-heading">
+              <h2 id="before-contact-heading" className="text-2xl font-extrabold text-navy">
+                Before You Contact Us
+              </h2>
+              <div className="mt-6 space-y-6">
+                <GuidanceItem heading="Use the Correct Pathway">
+                  Employers and professionals receive clearer support when they use the relevant registration pathway.
+                </GuidanceItem>
+                <GuidanceItem heading="Provide Clear Information">
+                  Include enough detail for the enquiry to be understood without including unnecessary sensitive information.
+                </GuidanceItem>
+                <GuidanceItem heading="Recruitment Decisions">
+                  Submitting an enquiry does not guarantee candidate consideration, shortlisting, placement, or employment.
+                </GuidanceItem>
+                <GuidanceItem heading="Privacy">
+                  Personal information is handled according to the platform&apos;s published privacy information and consent process.
+                </GuidanceItem>
+              </div>
+              <Link href="/privacy" className="mt-7 inline-flex min-h-11 items-center font-bold text-green underline underline-offset-4">
+                Read Our Privacy Information
+              </Link>
+            </aside>
+          </div>
         </div>
       </PageContainer>
+    </section>
+  );
+}
+
+function GuidanceItem({ heading, children }: { heading: string; children: string }) {
+  return (
+    <section>
+      <h3 className="font-heading text-lg font-extrabold text-navy">{heading}</h3>
+      <p className="mt-2 leading-7 text-slate">{children}</p>
     </section>
   );
 }

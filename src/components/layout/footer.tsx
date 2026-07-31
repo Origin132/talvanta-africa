@@ -3,29 +3,28 @@ import { PageContainer } from "./page-container";
 
 const linkGroups = [
   {
-    title: "Quick links",
+    title: "Company",
     links: [
       { label: "About", href: "/about" },
       { label: "Services", href: "/services" },
-      { label: "Jobs", href: "/jobs" },
       { label: "Contact", href: "/contact" },
       { label: "FAQs", href: "/faqs" },
     ],
   },
   {
-    title: "Employers",
+    title: "Recruitment",
     links: [
+      { label: "Jobs", href: "/jobs" },
       { label: "For Employers", href: "/for-employers" },
-      { label: "Hire Talent", href: "/for-employers" },
-      { label: "Recruitment Services", href: "/services" },
+      { label: "For Job Seekers", href: "/job-seekers" },
+      { label: "Register Your Profile", href: "/candidate-registration" },
     ],
   },
   {
-    title: "Job seekers",
+    title: "Legal and information",
     links: [
-      { label: "For Job Seekers", href: "/job-seekers" },
-      { label: "Explore Jobs", href: "/jobs" },
-      { label: "Register Your Profile", href: "/candidate-registration" },
+      { label: "Privacy", href: "/privacy" },
+      { label: "Terms", href: "/terms" },
     ],
   },
 ] as const;
@@ -49,7 +48,7 @@ export function Footer() {
               Connecting exceptional talent with growing businesses.
             </p>
             <p className="mt-4 max-w-md text-sm leading-7 text-white/80">
-              Talvanta Africa is an AI-powered HR recruitment and talent-solutions company connecting qualified professionals with growing businesses across Nigeria and Africa.
+              Talvanta Africa is an early-stage recruitment technology platform supporting structured employer requests, professional profile registration, and human-led recruitment communication.
             </p>
           </div>
 
@@ -76,18 +75,11 @@ export function Footer() {
 
         <div className="flex flex-col gap-5 pt-8 text-sm text-white/75 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p>© {year} Talvanta Africa.</p>
+            <p>© {year} Talvanta Africa. All rights reserved.</p>
             <p className="mt-2 max-w-2xl">
               Talvanta Africa is an early-stage recruitment technology platform. Recruitment support, candidate consideration, and vacancy availability remain subject to human review and confirmation.
             </p>
           </div>
-          <nav aria-label="Legal links">
-            <ul className="flex flex-wrap gap-x-5 gap-y-2">
-              <li><Link className="hover:text-gold" href="/privacy">Privacy</Link></li>
-              <li><Link className="hover:text-gold" href="/terms">Terms</Link></li>
-              <li><Link className="hover:text-gold" href="/faqs">FAQs</Link></li>
-            </ul>
-          </nav>
         </div>
       </PageContainer>
     </footer>

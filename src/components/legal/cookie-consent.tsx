@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 type Preference = "accepted" | "rejected" | "dismissed";
 
@@ -50,13 +51,13 @@ export function CookieConsent() {
             .
           </p>
         </div>
-        <div className="grid w-full gap-2 sm:grid-cols-3 lg:w-auto lg:grid-cols-1">
-          <button type="button" onClick={() => choose("accepted")} className="inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-green px-4 py-2 text-sm font-bold text-white hover:bg-navy">
+        <div className="grid w-full gap-2 sm:grid-cols-3 lg:w-auto lg:min-w-52 lg:grid-cols-1">
+          <Button type="button" onClick={() => choose("accepted")} className="w-full">
             Accept
-          </button>
-          <button type="button" onClick={() => choose("rejected")} className="inline-flex min-h-11 w-full items-center justify-center rounded-lg border border-green bg-white px-4 py-2 text-sm font-bold text-green hover:bg-soft-grey">
+          </Button>
+          <Button type="button" onClick={() => choose("rejected")} className="w-full" variant="outline">
             Reject non-essential
-          </button>
+          </Button>
           <button type="button" onClick={() => choose("dismissed")} className="inline-flex min-h-11 w-full items-center justify-center rounded-lg px-4 py-2 text-sm font-bold text-slate hover:bg-soft-grey" aria-label="Dismiss cookie preference notice">
             Dismiss
           </button>

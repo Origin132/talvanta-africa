@@ -2,6 +2,7 @@ import Link from "next/link";
 import { primaryNavigation } from "@/lib/site-navigation";
 import { ButtonLink } from "@/components/ui/button";
 import { MobileNavigation } from "./mobile-navigation";
+import { NavigationLink } from "./navigation-link";
 import { PageContainer } from "./page-container";
 
 export function Header() {
@@ -16,22 +17,23 @@ export function Header() {
           Talvanta <span className="text-green">Africa</span>
         </Link>
 
-        <nav aria-label="Primary navigation" className="hidden xl:block">
-          <ul className="flex items-center gap-1 xl:gap-2">
+        <nav aria-label="Primary navigation" className="hidden min-[1180px]:block">
+          <ul className="flex items-center gap-1">
             {primaryNavigation.map((item) => (
               <li key={item.href}>
-                <Link
+                <NavigationLink
                   href={item.href}
-                  className="inline-flex min-h-11 items-center rounded-lg px-2.5 text-sm font-semibold text-slate hover:bg-soft-grey hover:text-green xl:px-3"
+                  activeClassName="bg-soft-grey font-extrabold text-navy underline decoration-gold decoration-2 underline-offset-8"
+                  className="inline-flex min-h-11 items-center rounded-lg px-2.5 text-sm font-semibold text-slate hover:bg-soft-grey hover:text-green"
                 >
                   {item.label}
-                </Link>
+                </NavigationLink>
               </li>
             ))}
           </ul>
         </nav>
 
-        <div className="hidden xl:block">
+        <div className="hidden min-[1180px]:block">
           <ButtonLink href="/for-employers">Hire Talent</ButtonLink>
         </div>
         <MobileNavigation items={primaryNavigation} />

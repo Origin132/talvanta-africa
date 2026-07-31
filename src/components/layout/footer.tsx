@@ -25,6 +25,7 @@ const linkGroups = [
     links: [
       { label: "Privacy", href: "/privacy" },
       { label: "Terms", href: "/terms" },
+      { label: "Project Case Study", href: "/project-case-study" },
     ],
   },
 ] as const;

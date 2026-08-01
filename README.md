@@ -77,6 +77,10 @@ On macOS or Linux, use `cp .env.example .env.local`. Never commit secrets. Varia
 
 Add the real employer, candidate, and contact Make.com webhook URLs to `.env.local`, optionally add a long shared secret, and restart the development server after changes. Never commit `.env.local`; rotate any webhook URL or secret that is exposed. See [`docs/make-integration.md`](docs/make-integration.md) and [`docs/contact-integration.md`](docs/contact-integration.md) for manual Make.com, Google Sheets, and recruiter-email configuration.
 
+## Supabase foundation
+
+Ticket 012 adds validated public Supabase configuration, browser and server SSR client factories, and cookie-session refresh plumbing for later authentication work. It does not add authentication pages, database tables, dashboards, Storage buckets, or CV uploads. See [`docs/supabase-foundation.md`](docs/supabase-foundation.md) for setup, boundaries, limitations, and production guidance.
+
 ## AI and human oversight
 
 Talia is planned as an AI recruitment assistant. It must disclose that it is AI, collect lead information only with consent, and support rather than replace human recruitment judgement. It must not guarantee employment or placement, automatically reject candidates, make final hiring decisions, request unnecessary sensitive information, or produce discriminatory recommendations.

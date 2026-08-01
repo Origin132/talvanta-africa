@@ -42,3 +42,5 @@ Test missing, empty, oversized, renamed, wrong-MIME, wrong-extension, invalid-si
 If upload preparation fails, verify candidate database role and Storage insert/select policies. If finalization fails, verify bucket MIME/size configuration and list/download policies. If metadata fails, verify ownership policies and the unique current-CV constraint. Do not expose raw Supabase errors while diagnosing.
 
 Deferred features include DOCX and other formats, malware scanning, deep parsing, previews, administrator or recruiter access, version history, retention automation, CV parsing, AI analysis, scoring, ranking, application-specific selection, and external processing.
+
+Ticket 016 displays owned CV status and links to the existing Documents route from the candidate dashboard. It does not change the upload, validation, signed-download, replacement, deletion, or Storage security contracts.

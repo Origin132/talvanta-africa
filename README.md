@@ -93,6 +93,10 @@ Ticket 014 connects authenticated candidate and employer accounts to the existin
 
 Ticket 015 adds candidate-owned PDF CV upload, replacement, private download, deletion, and document metadata using the existing private Supabase bucket and RLS policies. PDF signature and size checks are included; malware scanning, parsing, DOCX support, and employer access are not. See [`docs/private-cv-storage.md`](docs/private-cv-storage.md).
 
+## Candidate dashboard
+
+Ticket 016 adds a candidate-only dashboard, canonical profile and edit routes, CV and account summaries, career-preference guidance, quick actions, and a limited settings foundation. It does not add applications, matching, scoring, rankings, job alerts, or employer access. See [`docs/candidate-dashboard.md`](docs/candidate-dashboard.md).
+
 ## AI and human oversight
 
 Talia is planned as an AI recruitment assistant. It must disclose that it is AI, collect lead information only with consent, and support rather than replace human recruitment judgement. It must not guarantee employment or placement, automatically reject candidates, make final hiring decisions, request unnecessary sensitive information, or produce discriminatory recommendations.

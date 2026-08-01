@@ -89,6 +89,10 @@ Ticket 013 adds candidate and employer email/password signup, verification, sign
 
 Ticket 014 connects authenticated candidate and employer accounts to the existing RLS-protected profile tables, adds role-aware onboarding and editing, and calculates transparent profile-completion guidance. It does not create database schema, dashboards, administrator access, Storage, or CV upload. See [`docs/database-profiles-and-rls.md`](docs/database-profiles-and-rls.md).
 
+## Private CV storage
+
+Ticket 015 adds candidate-owned PDF CV upload, replacement, private download, deletion, and document metadata using the existing private Supabase bucket and RLS policies. PDF signature and size checks are included; malware scanning, parsing, DOCX support, and employer access are not. See [`docs/private-cv-storage.md`](docs/private-cv-storage.md).
+
 ## AI and human oversight
 
 Talia is planned as an AI recruitment assistant. It must disclose that it is AI, collect lead information only with consent, and support rather than replace human recruitment judgement. It must not guarantee employment or placement, automatically reject candidates, make final hiring decisions, request unnecessary sensitive information, or produce discriminatory recommendations.

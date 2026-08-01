@@ -31,9 +31,9 @@ export async function getRoleProfile<T extends AccountType>(accountType: T, user
   return data as (T extends "candidate" ? CandidateProfile : EmployerProfile) | null;
 }
 
-export async function requireAccountType(accountType: AccountType) {
+export async function requireAccountType(accountType: AccountType, nextPath = `/account/${accountType}`) {
   const current = await getCurrentProfile();
-  if (current.status === "unauthenticated") redirect(`/sign-in?next=/account/${accountType}`);
+  if (current.status === "unauthenticated") redirect(`/sign-in?next=${encodeURIComponent(nextPath)}`);
   if (current.status !== "ready" || current.profile.account_type !== accountType) redirect("/account");
   return current;
 }

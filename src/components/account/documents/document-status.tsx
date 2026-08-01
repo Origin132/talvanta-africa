@@ -1,0 +1,1 @@
+export function DocumentStatus({ status, message }: { status: "success" | "error"; message: string }) { return <div role={status === "error" ? "alert" : "status"} aria-live="polite" className={`rounded-lg border p-4 font-semibold ${status === "error" ? "border-error-red/40 bg-red-50 text-error-red" : "border-green/30 bg-green/5 text-navy"}`}>{message}</div>; }

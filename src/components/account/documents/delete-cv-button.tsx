@@ -1,0 +1,10 @@
+"use client";
+
+import { useActionState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
+import { deleteCv, type DocumentActionState } from "@/app/account/candidate/documents/actions";
+import { DocumentStatus } from "@/components/account/documents/document-status";
+import { Button } from "@/components/ui/button";
+
+const initial: DocumentActionState = { status: "idle" };
+export function DeleteCvButton() { const dialog = useRef<HTMLDialogElement>(null); const trigger = useRef<HTMLButtonElement>(null); const router = useRouter(); const [state, action, pending] = useActionState(deleteCv, initial); useEffect(() => { if (state.status === "success") { dialog.current?.close(); router.replace("/account/candidate/documents?status=deleted"); } }, [state.status, router]); return <div>{state.message && state.status === "error" ? <div className="mb-4"><DocumentStatus status="error" message={state.message} /></div> : null}<button ref={trigger} type="button" className="inline-flex min-h-12 items-center justify-center rounded-[var(--radius)] border border-navy bg-white px-5 py-3 text-sm font-bold text-navy shadow-sm hover:bg-soft-grey focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-gold" onClick={() => dialog.current?.showModal()}>Delete CV</button><dialog ref={dialog} onClose={() => trigger.current?.focus()} className="m-auto w-[calc(100%-2rem)] max-w-md rounded-[var(--radius)] border border-border-grey bg-white p-0 text-navy shadow-xl backdrop:bg-navy/60"><div className="p-6"><h2 className="font-heading text-2xl font-extrabold">Delete this CV?</h2><p className="mt-3 leading-7 text-slate">This removes the current CV from your candidate account. You will need to upload another document if you want a CV associated with your profile.</p><form action={action} className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end"><Button type="button" variant="outline" onClick={() => dialog.current?.close()}>Keep CV</Button><Button type="submit" disabled={pending}>{pending ? "Deleting CV..." : "Delete CV"}</Button></form></div></dialog></div>; }

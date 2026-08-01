@@ -1,0 +1,6 @@
+import { NextResponse, type NextRequest } from "next/server";
+import { CV_BUCKET } from "@/lib/documents/cv-validation";
+import { getCurrentCv } from "@/lib/documents/get-current-cv";
+import { getCurrentProfile } from "@/lib/profiles/get-current-profile";
+import { createClient } from "@/lib/supabase/server";
+export async function GET(request: NextRequest) { const current = await getCurrentProfile(); if (current.status === "unauthenticated") return NextResponse.redirect(new URL("/sign-in?next=/account/candidate/documents", request.url)); if (current.status !== "ready" || current.profile.account_type !== "candidate") return NextResponse.redirect(new URL("/account", request.url)); const document = await getCurrentCv(current.user.id); if (!document || document.bucket_name !== CV_BUCKET || !document.storage_path.startsWith(`${current.user.id}/`)) return NextResponse.redirect(new URL("/account/candidate/documents?error=download_failed", request.url)); const supabase = await createClient(); const { data, error } = await supabase.storage.from(CV_BUCKET).createSignedUrl(document.storage_path, 60, { download: document.original_filename }); if (error || !data.signedUrl) return NextResponse.redirect(new URL("/account/candidate/documents?error=download_failed", request.url)); return NextResponse.redirect(data.signedUrl); }

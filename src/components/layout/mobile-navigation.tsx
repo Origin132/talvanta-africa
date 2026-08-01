@@ -77,6 +77,7 @@ export function MobileNavigation({ items }: MobileNavigationProps) {
               </li>
             ))}
           </ul>
+          <NavigationLink href="/sign-in" activeClassName="bg-soft-grey text-green" className="mt-3 flex min-h-12 items-center justify-center rounded-lg font-bold text-navy underline hover:bg-soft-grey hover:text-green">Sign In</NavigationLink>
           <ButtonLink
             href="/for-employers"
             className="mt-4 w-full"

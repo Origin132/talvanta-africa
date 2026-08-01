@@ -33,7 +33,8 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="hidden min-[1180px]:block">
+        <div className="hidden items-center gap-4 min-[1180px]:flex">
+          <Link className="inline-flex min-h-11 items-center font-bold text-navy hover:text-green focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-gold" href="/sign-in">Sign In</Link>
           <ButtonLink href="/for-employers">Hire Talent</ButtonLink>
         </div>
         <MobileNavigation items={primaryNavigation} />

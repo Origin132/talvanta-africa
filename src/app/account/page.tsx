@@ -1,0 +1,7 @@
+import type { Metadata } from "next";
+import { redirect } from "next/navigation";
+import { AuthShell } from "@/components/auth/auth-shell";
+import { SignOutButton } from "@/components/auth/sign-out-button";
+import { createClient } from "@/lib/supabase/server";
+export const metadata: Metadata = { title: "Your Account | Talvanta Africa", description: "Access your authenticated Talvanta Africa account.", robots: { index: false, follow: false } };
+export default async function Page() { const supabase = await createClient(); const { data: { user } } = await supabase.auth.getUser(); if (!user) redirect("/sign-in?next=/account"); const rawType = user.user_metadata?.account_type; const accountType = rawType === "candidate" ? "Candidate" : rawType === "employer" ? "Employer" : "Not set"; return <AuthShell eyebrow="Account" title="Your Talvanta Africa Account" intro="Your account has been authenticated successfully. Profile, document, and recruitment-management tools will be introduced through the next development stages."><dl className="space-y-4"><div><dt className="font-bold text-navy">Signed in as</dt><dd className="mt-1 break-all text-slate">{user.email ?? "Email unavailable"}</dd></div><div><dt className="font-bold text-navy">Account type</dt><dd className="mt-1 text-slate">{accountType} <span className="block text-sm">Onboarding information only; it does not grant administrative access.</span></dd></div></dl><div className="mt-7"><SignOutButton /></div></AuthShell>; }

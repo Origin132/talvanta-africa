@@ -81,6 +81,10 @@ Add the real employer, candidate, and contact Make.com webhook URLs to `.env.loc
 
 Ticket 012 adds validated public Supabase configuration, browser and server SSR client factories, and cookie-session refresh plumbing for later authentication work. It does not add authentication pages, database tables, dashboards, Storage buckets, or CV uploads. See [`docs/supabase-foundation.md`](docs/supabase-foundation.md) for setup, boundaries, limitations, and production guidance.
 
+## Authentication
+
+Ticket 013 adds candidate and employer email/password signup, verification, sign-in, recovery, sign-out, safe callback redirects, and a protected account placeholder. It does not add profile tables, dashboards, administrator access, Storage, or CV upload. See [`docs/authentication.md`](docs/authentication.md) for configuration, security boundaries, testing, and limitations.
+
 ## AI and human oversight
 
 Talia is planned as an AI recruitment assistant. It must disclose that it is AI, collect lead information only with consent, and support rather than replace human recruitment judgement. It must not guarantee employment or placement, automatically reject candidates, make final hiring decisions, request unnecessary sensitive information, or produce discriminatory recommendations.

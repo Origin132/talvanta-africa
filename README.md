@@ -85,6 +85,10 @@ Ticket 012 adds validated public Supabase configuration, browser and server SSR 
 
 Ticket 013 adds candidate and employer email/password signup, verification, sign-in, recovery, sign-out, safe callback redirects, and a protected account placeholder. It does not add profile tables, dashboards, administrator access, Storage, or CV upload. See [`docs/authentication.md`](docs/authentication.md) for configuration, security boundaries, testing, and limitations.
 
+## Database profiles
+
+Ticket 014 connects authenticated candidate and employer accounts to the existing RLS-protected profile tables, adds role-aware onboarding and editing, and calculates transparent profile-completion guidance. It does not create database schema, dashboards, administrator access, Storage, or CV upload. See [`docs/database-profiles-and-rls.md`](docs/database-profiles-and-rls.md).
+
 ## AI and human oversight
 
 Talia is planned as an AI recruitment assistant. It must disclose that it is AI, collect lead information only with consent, and support rather than replace human recruitment judgement. It must not guarantee employment or placement, automatically reject candidates, make final hiring decisions, request unnecessary sensitive information, or produce discriminatory recommendations.

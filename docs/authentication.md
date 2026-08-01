@@ -26,7 +26,7 @@ In Supabase Auth URL Configuration, manually set the production Site URL to the 
 
 Forms reject unexpected fields, constrain inputs, never log credentials, and expose only controlled errors. Supabase's configured protections provide auth-call rate limiting for this ticket; no custom password endpoint or IP logging was added. This does not claim complete abuse prevention. Review production bot protection and email-delivery health before launch.
 
-No database profiles, role-backed RLS, dashboards, administrator access, CV upload, Storage policies, account deletion, MFA, social login, vacancy management, or private-document handling is included. Metadata must not authorize privileged actions.
+Ticket 014 subsequently connects authentication to existing RLS-protected profile tables. Database `profiles.account_type`, not Auth metadata, is authoritative after profile creation. See `database-profiles-and-rls.md`. Dashboards, administrator access, CV upload, Storage policies, account deletion, MFA, social login, vacancy management, and private-document handling remain excluded.
 
 ## Testing and troubleshooting
 

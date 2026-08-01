@@ -1,0 +1,8 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { SignOutButton } from "@/components/auth/sign-out-button";
+import { PageContainer } from "@/components/layout/page-container";
+import { getCurrentProfile } from "@/lib/profiles/get-current-profile";
+export const metadata: Metadata = { robots: { index: false, follow: false } };
+export default async function Layout({ children }: { children: React.ReactNode }) { const current = await getCurrentProfile(); if (current.status === "unauthenticated") redirect("/sign-in?next=/account"); const roleNavigation = current.status === "ready" ? { href: `/account/${current.profile.account_type}`, label: current.profile.account_type === "candidate" ? "Candidate Profile" : "Employer Profile" } : null; return <div className="bg-soft-grey"><PageContainer><div className="border-b border-border-grey py-5"><div className="flex flex-wrap items-center justify-between gap-4"><div><p className="font-bold text-navy">Account area</p><p className="max-w-full break-all text-sm text-slate">Signed in as {current.user.email ?? "email unavailable"}</p></div><SignOutButton /></div><nav className="mt-4" aria-label="Account navigation"><ul className="flex flex-wrap gap-2"><li><Link className="inline-flex min-h-11 items-center rounded-lg px-4 font-bold text-navy hover:bg-white hover:text-green" href="/account">Account</Link></li>{roleNavigation ? <li><Link className="inline-flex min-h-11 items-center rounded-lg px-4 font-bold text-navy hover:bg-white hover:text-green" href={roleNavigation.href}>{roleNavigation.label}</Link></li> : null}</ul></nav></div>{children}</PageContainer></div>; }

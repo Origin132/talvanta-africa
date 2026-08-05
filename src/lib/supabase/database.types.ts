@@ -1,6 +1,7 @@
 export type AccountType = "candidate" | "employer";
 export type ApplicationRole = "admin";
 export type RecruitmentRequestStatus = "draft" | "submitted" | "under-review" | "clarification-required" | "accepted" | "declined" | "withdrawn" | "closed";
+export type VacancyStatus = "draft" | "published" | "closing-soon" | "closed" | "archived";
 export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[];
 
 type ProfileRow = { id: string; full_name: string; account_type: AccountType; onboarding_completed: boolean; created_at: string; updated_at: string };
@@ -9,6 +10,7 @@ type EmployerRow = { user_id: string; organisation_name: string | null; organisa
 type CandidateDocumentRow = { id: string; user_id: string; document_type: "cv"; bucket_name: "candidate-cvs"; storage_path: string; original_filename: string; stored_filename: string; mime_type: "application/pdf"; file_size_bytes: number; uploaded_at: string; updated_at: string };
 type RecruitmentRequestRow = { id: string; employer_user_id: string; organisation_name: string; job_title: string; department: string | null; employment_type: string | null; workplace_type: string | null; number_of_positions: number | null; job_location: string | null; preferred_start_date: string | null; recruitment_timeline: string | null; salary_range: string | null; role_summary: string | null; responsibilities: string[] | null; required_skills: string[] | null; required_experience: string | null; education_requirements: string | null; preferred_service: string | null; additional_information: string | null; status: RecruitmentRequestStatus; submitted_at: string | null; withdrawn_at: string | null; created_at: string; updated_at: string };
 type UserRoleRow = { id: string; user_id: string; role: ApplicationRole; created_at: string };
+type VacancyRow = { id: string; recruitment_request_id: string | null; employer_user_id: string | null; created_by_admin_user_id: string | null; slug: string; job_title: string; organisation_name: string; department: string | null; employment_type: string; workplace_type: string; job_location: string; number_of_positions: number; salary_range: string | null; role_summary: string; responsibilities: string[] | null; required_skills: string[] | null; required_experience: string | null; education_requirements: string | null; application_instructions: string | null; status: VacancyStatus; applications_open: boolean; published_at: string | null; closes_at: string | null; created_at: string | null; updated_at: string | null };
 
 export type Database = {
   public: {
@@ -19,10 +21,11 @@ export type Database = {
       candidate_documents: { Row: CandidateDocumentRow; Insert: Omit<CandidateDocumentRow, "uploaded_at" | "updated_at"> & { uploaded_at?: string; updated_at?: string }; Update: Partial<Omit<CandidateDocumentRow, "id" | "user_id" | "uploaded_at">>; Relationships: [] };
       recruitment_requests: { Row: RecruitmentRequestRow; Insert: { id: string; employer_user_id: string; organisation_name: string; job_title: string; status: RecruitmentRequestStatus; created_at?: string; updated_at?: string } & Partial<Omit<RecruitmentRequestRow, "id" | "employer_user_id" | "organisation_name" | "job_title" | "status" | "created_at" | "updated_at">>; Update: Partial<Omit<RecruitmentRequestRow, "id" | "employer_user_id" | "created_at">>; Relationships: [] };
       user_roles: { Row: UserRoleRow; Insert: { id?: string; user_id: string; role: ApplicationRole; created_at?: string }; Update: Partial<UserRoleRow>; Relationships: [] };
+      vacancies: { Row: VacancyRow; Insert: { id?: string; slug: string; job_title: string; organisation_name: string; employment_type: string; workplace_type: string; job_location: string; number_of_positions: number; role_summary: string; status: VacancyStatus; applications_open: boolean; recruitment_request_id?: string | null; employer_user_id?: string | null; created_by_admin_user_id?: string | null; department?: string | null; salary_range?: string | null; responsibilities?: string[] | null; required_skills?: string[] | null; required_experience?: string | null; education_requirements?: string | null; application_instructions?: string | null; published_at?: string | null; closes_at?: string | null; created_at?: string | null; updated_at?: string | null }; Update: Partial<VacancyRow>; Relationships: [] };
     };
     Views: Record<string, never>;
     Functions: { has_role: { Args: { requested_role: ApplicationRole }; Returns: boolean } };
-    Enums: { application_role: ApplicationRole };
+    Enums: { application_role: ApplicationRole; vacancy_status: VacancyStatus };
     CompositeTypes: Record<string, never>;
   };
 };
@@ -45,3 +48,6 @@ export type RecruitmentRequestUpdate = Database["public"]["Tables"]["recruitment
 export type UserRole = Database["public"]["Tables"]["user_roles"]["Row"];
 export type UserRoleInsert = Database["public"]["Tables"]["user_roles"]["Insert"];
 export type UserRoleUpdate = Database["public"]["Tables"]["user_roles"]["Update"];
+export type Vacancy = Database["public"]["Tables"]["vacancies"]["Row"];
+export type VacancyInsert = Database["public"]["Tables"]["vacancies"]["Insert"];
+export type VacancyUpdate = Database["public"]["Tables"]["vacancies"]["Update"];

@@ -1,32 +1,3 @@
-import type { Metadata } from "next";
-import { JobsBrowser } from "@/components/jobs/jobs-browser";
-import { JobsEmptyState } from "@/components/jobs/jobs-empty-state";
-import { OpportunitiesProcess } from "@/components/jobs/opportunities-process";
-import { PageHero } from "@/components/ui/page-hero";
-import { getVerifiedJobs } from "@/lib/jobs";
-import { createPageMetadata } from "@/lib/seo-metadata";
-
-export const metadata: Metadata = createPageMetadata({
-  title: "Career Opportunities | Talvanta Africa",
-  description: "Explore verified career opportunities through Talvanta Africa or register your professional profile for possible consideration when suitable roles become available.",
-  path: "/jobs",
-});
-
-export default function JobsPage() {
-  const verifiedJobs = getVerifiedJobs();
-
-  return (
-    <>
-      <PageHero
-        eyebrow="Career Opportunities"
-        title="Find your next opportunity"
-        supportingText="Explore verified career opportunities published through Talvanta Africa, or register your professional profile for possible consideration when suitable roles become available."
-        primaryAction={{ label: "Register Your Profile", href: "/candidate-registration" }}
-        secondaryAction={{ label: "Candidate Support", href: "/job-seekers" }}
-        variation="dark"
-      />
-      {verifiedJobs.length === 0 ? <JobsEmptyState /> : <JobsBrowser jobs={verifiedJobs} />}
-      <OpportunitiesProcess />
-    </>
-  );
-}
+import type{Metadata}from"next";import{JobsBrowser}from"@/components/jobs/jobs-browser";import{JobsEmptyState}from"@/components/jobs/jobs-empty-state";import{OpportunitiesProcess}from"@/components/jobs/opportunities-process";import{PageHero}from"@/components/ui/page-hero";import{getPublicVacancies}from"@/lib/jobs";import{createPageMetadata}from"@/lib/seo-metadata";
+export const metadata:Metadata=createPageMetadata({title:"Career Opportunities | Talvanta Africa",description:"Explore verified career opportunities published through Talvanta Africa.",path:"/jobs"});
+export default async function JobsPage({searchParams}:{searchParams:Promise<{employmentType?:string;workplaceType?:string;location?:string;status?:string}>}){const filters=await searchParams;const data=await getPublicVacancies(filters);const filtered=Boolean(filters.employmentType||filters.workplaceType||filters.location||filters.status);return <><PageHero eyebrow="Career Opportunities" title="Career Opportunities" supportingText="Explore verified opportunities published through Talvanta Africa." primaryAction={{label:"Register Your Profile",href:"/sign-up"}} secondaryAction={{label:"Candidate Support",href:"/job-seekers"}} variation="dark"/>{data.vacancies.length||filtered?<JobsBrowser jobs={data.vacancies} filters={filters}/>:<JobsEmptyState/>}{data.unavailable?<p role="status" className="mx-auto max-w-[var(--page-max-width)] px-4 pb-8 text-center text-sm text-slate">Career opportunities are temporarily unavailable.</p>:null}<OpportunitiesProcess/></>}

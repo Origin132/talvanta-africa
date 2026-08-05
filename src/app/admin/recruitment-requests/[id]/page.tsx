@@ -180,6 +180,15 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
         </AccountCard>
         <AccountCard title="Status Actions">
           <StatusActions actions={actions} />
+          {request.status === "accepted" ? (
+            <ButtonLink
+              className="mt-4"
+              href={`/admin/vacancies/new?recruitment_request=${id}`}
+              variant="outline"
+            >
+              Create Vacancy Draft
+            </ButtonLink>
+          ) : null}
         </AccountCard>
       </div>
     </AccountPage>

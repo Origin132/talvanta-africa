@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { TaliaPanel } from "@/components/talia/talia-panel";
 import { TALIA_WELCOME_MESSAGE } from "@/lib/talia/mock-responses";
 import type {
@@ -24,6 +25,7 @@ function clientMessage(message: Omit<TaliaMessage, "id">): TaliaMessage {
 }
 
 export function TaliaLauncher() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<TaliaMessage[]>([welcomeMessage()]);
   const [input, setInput] = useState("");
@@ -120,6 +122,8 @@ export function TaliaLauncher() {
     setLastFailedMessage(null);
     requestAnimationFrame(() => inputRef.current?.focus());
   }
+
+  if (pathname.startsWith("/admin")) return null;
 
   return (
     <>

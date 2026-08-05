@@ -1,4 +1,5 @@
 export type AccountType = "candidate" | "employer";
+export type ApplicationRole = "admin";
 export type RecruitmentRequestStatus = "draft" | "submitted" | "under-review" | "clarification-required" | "accepted" | "declined" | "withdrawn" | "closed";
 export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[];
 
@@ -7,6 +8,7 @@ type CandidateRow = { user_id: string; phone: string | null; current_location: s
 type EmployerRow = { user_id: string; organisation_name: string | null; organisation_website: string | null; industry: string | null; organisation_size: string | null; contact_role: string | null; phone: string | null; organisation_location: string | null; organisation_summary: string | null; created_at: string; updated_at: string };
 type CandidateDocumentRow = { id: string; user_id: string; document_type: "cv"; bucket_name: "candidate-cvs"; storage_path: string; original_filename: string; stored_filename: string; mime_type: "application/pdf"; file_size_bytes: number; uploaded_at: string; updated_at: string };
 type RecruitmentRequestRow = { id: string; employer_user_id: string; organisation_name: string; job_title: string; department: string | null; employment_type: string | null; workplace_type: string | null; number_of_positions: number | null; job_location: string | null; preferred_start_date: string | null; recruitment_timeline: string | null; salary_range: string | null; role_summary: string | null; responsibilities: string[] | null; required_skills: string[] | null; required_experience: string | null; education_requirements: string | null; preferred_service: string | null; additional_information: string | null; status: RecruitmentRequestStatus; submitted_at: string | null; withdrawn_at: string | null; created_at: string; updated_at: string };
+type UserRoleRow = { id: string; user_id: string; role: ApplicationRole; created_at: string };
 
 export type Database = {
   public: {
@@ -16,10 +18,11 @@ export type Database = {
       employer_profiles: { Row: EmployerRow; Insert: { user_id: string } & Partial<Omit<EmployerRow, "user_id" | "created_at" | "updated_at">>; Update: Partial<Omit<EmployerRow, "user_id" | "created_at">>; Relationships: [] };
       candidate_documents: { Row: CandidateDocumentRow; Insert: Omit<CandidateDocumentRow, "uploaded_at" | "updated_at"> & { uploaded_at?: string; updated_at?: string }; Update: Partial<Omit<CandidateDocumentRow, "id" | "user_id" | "uploaded_at">>; Relationships: [] };
       recruitment_requests: { Row: RecruitmentRequestRow; Insert: { id: string; employer_user_id: string; organisation_name: string; job_title: string; status: RecruitmentRequestStatus; created_at?: string; updated_at?: string } & Partial<Omit<RecruitmentRequestRow, "id" | "employer_user_id" | "organisation_name" | "job_title" | "status" | "created_at" | "updated_at">>; Update: Partial<Omit<RecruitmentRequestRow, "id" | "employer_user_id" | "created_at">>; Relationships: [] };
+      user_roles: { Row: UserRoleRow; Insert: { id?: string; user_id: string; role: ApplicationRole; created_at?: string }; Update: Partial<UserRoleRow>; Relationships: [] };
     };
     Views: Record<string, never>;
-    Functions: Record<string, never>;
-    Enums: Record<string, never>;
+    Functions: { has_role: { Args: { requested_role: ApplicationRole }; Returns: boolean } };
+    Enums: { application_role: ApplicationRole };
     CompositeTypes: Record<string, never>;
   };
 };
@@ -39,3 +42,6 @@ export type CandidateDocumentUpdate = Database["public"]["Tables"]["candidate_do
 export type RecruitmentRequest = Database["public"]["Tables"]["recruitment_requests"]["Row"];
 export type RecruitmentRequestInsert = Database["public"]["Tables"]["recruitment_requests"]["Insert"];
 export type RecruitmentRequestUpdate = Database["public"]["Tables"]["recruitment_requests"]["Update"];
+export type UserRole = Database["public"]["Tables"]["user_roles"]["Row"];
+export type UserRoleInsert = Database["public"]["Tables"]["user_roles"]["Insert"];
+export type UserRoleUpdate = Database["public"]["Tables"]["user_roles"]["Update"];

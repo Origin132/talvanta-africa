@@ -41,6 +41,7 @@ type ButtonLinkProps = {
   href: string;
   className?: string;
   variant?: ButtonVariant;
+  ariaCurrent?: "page";
 };
 
 export function ButtonLink({
@@ -48,11 +49,13 @@ export function ButtonLink({
   href,
   className = "",
   variant = "primary",
+  ariaCurrent,
 }: ButtonLinkProps) {
   return (
     <Link
       className={`${baseStyles} ${variantStyles[variant]} ${className}`}
       href={href}
+      aria-current={ariaCurrent}
     >
       {children}
     </Link>

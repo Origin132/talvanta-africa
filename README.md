@@ -97,6 +97,10 @@ Ticket 015 adds candidate-owned PDF CV upload, replacement, private download, de
 
 Ticket 016 adds a candidate-only dashboard, canonical profile and edit routes, CV and account summaries, career-preference guidance, quick actions, and a limited settings foundation. It does not add applications, matching, scoring, rankings, job alerts, or employer access. See [`docs/candidate-dashboard.md`](docs/candidate-dashboard.md).
 
+## Employer dashboard
+
+Ticket 017 adds an employer-only dashboard, canonical organisation-profile routes, and an authenticated Supabase recruitment-request lifecycle covering drafts, submission, clarification editing, withdrawal, and draft deletion. It remains separate from the existing public Make.com workflow and adds no staff review or vacancy publishing. See [`docs/employer-dashboard-and-requests.md`](docs/employer-dashboard-and-requests.md).
+
 ## AI and human oversight
 
 Talia is planned as an AI recruitment assistant. It must disclose that it is AI, collect lead information only with consent, and support rather than replace human recruitment judgement. It must not guarantee employment or placement, automatically reject candidates, make final hiring decisions, request unnecessary sensitive information, or produce discriminatory recommendations.

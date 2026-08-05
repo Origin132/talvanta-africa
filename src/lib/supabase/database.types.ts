@@ -1,10 +1,12 @@
 export type AccountType = "candidate" | "employer";
+export type RecruitmentRequestStatus = "draft" | "submitted" | "under-review" | "clarification-required" | "accepted" | "declined" | "withdrawn" | "closed";
 export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[];
 
 type ProfileRow = { id: string; full_name: string; account_type: AccountType; onboarding_completed: boolean; created_at: string; updated_at: string };
 type CandidateRow = { user_id: string; phone: string | null; current_location: string | null; professional_title: string | null; years_of_experience: number | null; professional_summary: string | null; linkedin_url: string | null; portfolio_url: string | null; preferred_roles: string[] | null; preferred_locations: string[] | null; preferred_employment_types: string[] | null; preferred_workplace_types: string[] | null; created_at: string; updated_at: string };
 type EmployerRow = { user_id: string; organisation_name: string | null; organisation_website: string | null; industry: string | null; organisation_size: string | null; contact_role: string | null; phone: string | null; organisation_location: string | null; organisation_summary: string | null; created_at: string; updated_at: string };
 type CandidateDocumentRow = { id: string; user_id: string; document_type: "cv"; bucket_name: "candidate-cvs"; storage_path: string; original_filename: string; stored_filename: string; mime_type: "application/pdf"; file_size_bytes: number; uploaded_at: string; updated_at: string };
+type RecruitmentRequestRow = { id: string; employer_user_id: string; organisation_name: string; job_title: string; department: string | null; employment_type: string | null; workplace_type: string | null; number_of_positions: number | null; job_location: string | null; preferred_start_date: string | null; recruitment_timeline: string | null; salary_range: string | null; role_summary: string | null; responsibilities: string[] | null; required_skills: string[] | null; required_experience: string | null; education_requirements: string | null; preferred_service: string | null; additional_information: string | null; status: RecruitmentRequestStatus; submitted_at: string | null; withdrawn_at: string | null; created_at: string; updated_at: string };
 
 export type Database = {
   public: {
@@ -13,6 +15,7 @@ export type Database = {
       candidate_profiles: { Row: CandidateRow; Insert: { user_id: string } & Partial<Omit<CandidateRow, "user_id" | "created_at" | "updated_at">>; Update: Partial<Omit<CandidateRow, "user_id" | "created_at">>; Relationships: [] };
       employer_profiles: { Row: EmployerRow; Insert: { user_id: string } & Partial<Omit<EmployerRow, "user_id" | "created_at" | "updated_at">>; Update: Partial<Omit<EmployerRow, "user_id" | "created_at">>; Relationships: [] };
       candidate_documents: { Row: CandidateDocumentRow; Insert: Omit<CandidateDocumentRow, "uploaded_at" | "updated_at"> & { uploaded_at?: string; updated_at?: string }; Update: Partial<Omit<CandidateDocumentRow, "id" | "user_id" | "uploaded_at">>; Relationships: [] };
+      recruitment_requests: { Row: RecruitmentRequestRow; Insert: { id: string; employer_user_id: string; organisation_name: string; job_title: string; status: RecruitmentRequestStatus; created_at?: string; updated_at?: string } & Partial<Omit<RecruitmentRequestRow, "id" | "employer_user_id" | "organisation_name" | "job_title" | "status" | "created_at" | "updated_at">>; Update: Partial<Omit<RecruitmentRequestRow, "id" | "employer_user_id" | "created_at">>; Relationships: [] };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;
@@ -33,3 +36,6 @@ export type EmployerProfileUpdate = Database["public"]["Tables"]["employer_profi
 export type CandidateDocument = Database["public"]["Tables"]["candidate_documents"]["Row"];
 export type CandidateDocumentInsert = Database["public"]["Tables"]["candidate_documents"]["Insert"];
 export type CandidateDocumentUpdate = Database["public"]["Tables"]["candidate_documents"]["Update"];
+export type RecruitmentRequest = Database["public"]["Tables"]["recruitment_requests"]["Row"];
+export type RecruitmentRequestInsert = Database["public"]["Tables"]["recruitment_requests"]["Insert"];
+export type RecruitmentRequestUpdate = Database["public"]["Tables"]["recruitment_requests"]["Update"];

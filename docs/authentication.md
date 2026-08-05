@@ -22,6 +22,8 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
 
 In Supabase Auth URL Configuration, manually set the production Site URL to the approved deployment origin (currently `https://talvanta-africa.vercel.app`) and allow the intended callback patterns, including `http://localhost:3000/**` for local development and `https://talvanta-africa.vercel.app/**` for production. Require email confirmation and review the email templates, password policy, CAPTCHA options, and Supabase Auth rate limits before launch. Never add secrets to public variables.
 
+Set `NEXT_PUBLIC_SITE_URL=https://talvanta-africa.vercel.app` in the Vercel Production environment. Production builds require this canonical value and reject localhost. Signup builds `emailRedirectTo` from that origin, producing `https://talvanta-africa.vercel.app/auth/callback?next=/account`. Password recovery passes `https://talvanta-africa.vercel.app/auth/callback?next=/reset-password` as `redirectTo` to Supabase. Local development may set `NEXT_PUBLIC_SITE_URL=http://localhost:3000`, producing `http://localhost:3000/auth/callback?next=/reset-password`. Redeploy after changing a `NEXT_PUBLIC_` value because Next.js freezes public environment variables at build time.
+
 ## Security and limitations
 
 Forms reject unexpected fields, constrain inputs, never log credentials, and expose only controlled errors. Supabase's configured protections provide auth-call rate limiting for this ticket; no custom password endpoint or IP logging was added. This does not claim complete abuse prevention. Review production bot protection and email-delivery health before launch.
@@ -32,4 +34,4 @@ Ticket 014 subsequently connects authentication to existing RLS-protected profil
 
 Run `npm run lint` and `npm run build`. Manually test both account types, validation failures, confirmation links, callback failure, valid/invalid sign-in, neutral recovery request, valid/expired reset links, sign-out, the `/account` guard, and malicious external `next` values. Repeat at 320, 360, 375, 390, 768, 1024, and 1440 pixels with keyboard-only navigation.
 
-If callbacks fail, confirm the site origin and redirect allow-list match exactly. If sessions disappear, verify Ticket 012 Proxy cookie refresh and HTTPS settings. If email does not arrive, inspect Supabase Auth email configuration without logging addresses, codes, tokens, cookies, or provider error objects.
+If callbacks fail, confirm the Vercel Production value is exactly `NEXT_PUBLIC_SITE_URL=https://talvanta-africa.vercel.app` and that the Supabase redirect allow-list contains `https://talvanta-africa.vercel.app/auth/callback`. Do not set the production value to localhost. If sessions disappear, verify Ticket 012 Proxy cookie refresh and HTTPS settings. If email does not arrive, inspect Supabase Auth email configuration without logging addresses, codes, tokens, cookies, or provider error objects.

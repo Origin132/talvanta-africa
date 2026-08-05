@@ -1,0 +1,2 @@
+import { redirect } from "next/navigation"; import { EmployerNavigation } from "@/components/account/employer/employer-navigation"; import { requireAccountType } from "@/lib/profiles/get-current-profile";
+export default async function Layout({children}:{children:React.ReactNode}){const current=await requireAccountType("employer","/account/employer");if(!current.profile.onboarding_completed)redirect("/account/onboarding/employer");return <><EmployerNavigation/>{children}</>}

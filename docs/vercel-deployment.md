@@ -34,7 +34,7 @@ Add these in Vercel Project Settings, separately for the Production environment:
 | `MAKE_CONTACT_WEBHOOK_URL` | Contact Make.com custom webhook |
 | `MAKE_WEBHOOK_TIMEOUT_MS` | Integer from 100 to 30000; normally `10000` |
 | `MAKE_WEBHOOK_SHARED_SECRET` | Strong secret also verified by all scenarios |
-| `NEXT_PUBLIC_SITE_URL` | Final public HTTPS origin, without a path |
+| `NEXT_PUBLIC_SITE_URL` | Canonical production origin: `https://talvanta-africa.vercel.app` |
 
 Webhook URLs and the shared secret are server-only and must never use a
 `NEXT_PUBLIC_` prefix. `NEXT_PUBLIC_SITE_URL` is intentionally public because it
@@ -54,13 +54,12 @@ deployment: create a new deployment or redeploy after every environment change.
 6. Confirm the framework preset is **Next.js**.
 7. Confirm the root directory is the repository root containing `package.json`.
 8. Keep the default install and build settings.
-9. Add the five Make.com variables. `NEXT_PUBLIC_SITE_URL` may be omitted only
-   for the first Vercel deployment: the application can bootstrap metadata from
-   Vercel’s trusted generated HTTPS URL.
+9. Add the five Make.com variables and set
+   `NEXT_PUBLIC_SITE_URL=https://talvanta-africa.vercel.app`.
 10. Deploy and inspect all build logs.
 11. Open the generated `vercel.app` production URL.
-12. Set `NEXT_PUBLIC_SITE_URL` to that exact HTTPS origin.
-13. Redeploy so every canonical, Open Graph URL, sitemap entry, robots reference,
+12. Confirm `NEXT_PUBLIC_SITE_URL` is still the exact canonical HTTPS origin.
+13. Redeploy after any environment change so every canonical, Open Graph URL, sitemap entry, robots reference,
     and JSON-LD URL uses the stable production origin.
 14. Complete every post-deployment test below before announcing availability.
 

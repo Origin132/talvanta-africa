@@ -49,3 +49,5 @@ If a new user lacks rows, inspect the deployed signup trigger and its execution 
 Ticket 015 subsequently connects candidates to the existing private CV bucket and document metadata table; see `private-cv-storage.md`. Public candidate registration, employer enquiries, Contact, Make.com, Google Sheets, Gmail, acknowledgements, and submission references remain separate and unchanged. Dashboards, administrator access, candidate search, employer access to candidates, job applications, vacancy management, organisation verification, role switching, account deletion, and service-role access remain deferred.
 
 Ticket 016 subsequently adds the candidate dashboard and canonical candidate profile routes using these same ownership checks and completion calculations; see `candidate-dashboard.md`. It does not change the database or RLS model.
+
+Ticket 017 subsequently adds employer dashboard routing and owned `recruitment_requests` access through the same authenticated-client and RLS model; see `employer-dashboard-and-requests.md`. It does not change schema or policies.

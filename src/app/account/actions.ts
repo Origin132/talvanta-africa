@@ -54,7 +54,7 @@ export async function saveEmployerProfile(_: ProfileActionState, form: FormData)
   if (nameError) return { status: "error", message: genericFailure, values: retained };
   const { error: completionError } = await supabase.from("profiles").update({ onboarding_completed: true }).eq("id", current.user.id);
   if (completionError) return { status: "error", message: genericFailure, values: retained };
-  revalidatePath("/account", "layout"); redirect("/account/employer");
+  revalidatePath("/account", "layout"); redirect("/account/employer/profile");
 }
 
 export async function recoverProfile() {

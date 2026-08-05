@@ -24,24 +24,27 @@ export function getSiteUrl() {
     try {
       const url = new URL(configured);
       const isLocal = ["localhost", "127.0.0.1", "::1"].includes(url.hostname);
+      if (process.env.VERCEL_ENV === "production" && isLocal) {
+        throw new Error("NEXT_PUBLIC_SITE_URL cannot use localhost in production.");
+      }
       if (url.protocol !== "https:" && !(url.protocol === "http:" && isLocal)) {
         throw new Error("The site URL must use HTTPS outside local development.");
       }
-      return normaliseUrl(url.toString());
+      return normaliseUrl(url.origin);
     } catch (error) {
       if (process.env.VERCEL_ENV === "production") throw error;
     }
   }
 
+  if (process.env.VERCEL_ENV === "production") {
+    throw new Error(
+      "NEXT_PUBLIC_SITE_URL must be configured with the canonical production origin.",
+    );
+  }
+
   if (process.env.VERCEL === "1") {
     const vercelUrl = vercelDeploymentUrl();
     if (vercelUrl) return vercelUrl;
-  }
-
-  if (process.env.VERCEL_ENV === "production") {
-    throw new Error(
-      "A production site URL must be available from NEXT_PUBLIC_SITE_URL or Vercel.",
-    );
   }
 
   return LOCAL_SITE_URL;

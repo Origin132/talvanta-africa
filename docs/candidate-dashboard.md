@@ -35,6 +35,8 @@ Profile Completion is guidance only. It is not candidate quality, employability,
 
 The full profile is grouped into personal/contact information, professional overview, career preferences, and validated HTTPS external links. Settings displays email and candidate account type as read-only values, plus password reset, sign-out, privacy, terms, and support links. Email change, account deletion, and role change are intentionally unavailable.
 
+Ticket 017 makes the same `/account/settings` route role-aware for employer accounts while preserving candidate navigation and candidate-only authorization elsewhere.
+
 ## Missing-data and security behaviour
 
 Missing or denied base profiles continue through the controlled `/account` recovery/support flow. Candidate-profile and document query failures return controlled unavailable states rather than raw database errors. Missing CV metadata is a legitimate empty state. Employers are redirected away from candidate pages, anonymous visitors go through sign-in, and incomplete candidates return to onboarding.

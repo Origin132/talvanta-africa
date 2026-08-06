@@ -19,6 +19,11 @@ const items = [
     href: "/admin/vacancies",
     active: (path: string) => path.startsWith("/admin/vacancies"),
   },
+  {
+    label: "Applications",
+    href: "/admin/applications",
+    active: (path: string) => path.startsWith("/admin/applications"),
+  },
 ] as const;
 
 export function AdminNavigation() {

@@ -4,6 +4,7 @@ import { applicationIdSchema } from "@/lib/applications/application-validation";
 import { getCurrentProfile } from "@/lib/profiles/get-current-profile";
 import type { CandidateProfile, JobApplication, JobApplicationStatus, JobApplicationStatusHistory, Vacancy } from "@/lib/supabase/database.types";
 import { createClient } from "@/lib/supabase/server";
+import { candidateCompletion } from "@/lib/profiles/profile-completion";
 
 const applicationColumns = "id, vacancy_id, candidate_user_id, candidate_document_id, cover_note, status, submitted_at, withdrawn_at, created_at, updated_at";
 const vacancyColumns = "id, slug, job_title, organisation_name, employment_type, workplace_type, job_location, status, applications_open, closes_at";
@@ -20,8 +21,11 @@ export async function requireCandidateApplications(nextPath: string) {
 }
 export async function getCandidateProfileSummary(userId: string) {
   const supabase = await createClient();
-  const { data } = await supabase.from("candidate_profiles").select("user_id, professional_title, current_location, professional_summary, preferred_roles").eq("user_id", userId).maybeSingle();
-  return data as Pick<CandidateProfile, "user_id" | "professional_title" | "current_location" | "professional_summary" | "preferred_roles"> | null;
+  const { data } = await supabase.from("candidate_profiles").select("user_id, phone, professional_title, current_location, professional_summary, preferred_roles, years_of_experience").eq("user_id", userId).maybeSingle();
+  return data as Pick<CandidateProfile, "user_id" | "phone" | "professional_title" | "current_location" | "professional_summary" | "preferred_roles" | "years_of_experience"> | null;
+}
+export function getCandidateCompletion(profile: Parameters<typeof candidateCompletion>[0], details: Parameters<typeof candidateCompletion>[1]) {
+  return candidateCompletion(profile, details);
 }
 export async function getCandidateApplications(status: JobApplicationStatus | null) {
   const current = await requireCandidateApplications("/account/candidate/applications"); const supabase = await createClient();
@@ -40,3 +44,7 @@ export async function getCandidateApplication(id: string): Promise<CandidateAppl
   if (!vacancyResult.data) notFound(); return { application, vacancy: vacancyResult.data as ApplicationVacancy, history: (historyResult.data ?? []) as JobApplicationStatusHistory[] };
 }
 export async function getExistingApplication(vacancyId: string, candidateId: string) { const supabase = await createClient(); const { data } = await supabase.from("job_applications").select("id").eq("vacancy_id", vacancyId).eq("candidate_user_id", candidateId).maybeSingle(); return data?.id ?? null; }
+export async function lookupExistingApplication(vacancyId: string, candidateId: string) {
+  const supabase = await createClient();
+  return supabase.from("job_applications").select("id").eq("vacancy_id", vacancyId).eq("candidate_user_id", candidateId).maybeSingle();
+}

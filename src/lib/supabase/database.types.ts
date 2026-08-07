@@ -2,7 +2,15 @@ export type AccountType = "candidate" | "employer";
 export type ApplicationRole = "admin";
 export type RecruitmentRequestStatus = "draft" | "submitted" | "under-review" | "clarification-required" | "accepted" | "declined" | "withdrawn" | "closed";
 export type VacancyStatus = "draft" | "published" | "closing-soon" | "closed" | "archived";
-export type JobApplicationStatus = "submitted" | "under-review" | "shortlisted" | "interview" | "offer" | "unsuccessful" | "withdrawn" | "hired";
+export type JobApplicationStatus =
+  | "submitted"
+  | "under-review"
+  | "shortlisted"
+  | "interview"
+  | "offer"
+  | "unsuccessful"
+  | "withdrawn"
+  | "hired";
 export type JobApplicationChangeSource = "candidate" | "administrator" | "employer" | "system";
 export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[];
 
@@ -30,7 +38,17 @@ export type Database = {
       job_application_status_history: { Row: JobApplicationStatusHistoryRow; Insert: { id?: string; application_id: string; previous_status?: JobApplicationStatus | null; new_status: JobApplicationStatus; changed_by_user_id?: string | null; change_source: JobApplicationChangeSource; public_note?: string | null; created_at?: string }; Update: Partial<Omit<JobApplicationStatusHistoryRow, "id" | "application_id" | "created_at">>; Relationships: [] };
     };
     Views: Record<string, never>;
-    Functions: { has_role: { Args: { requested_role: ApplicationRole }; Returns: boolean } };
+    Functions: {
+      has_role: { Args: { requested_role: ApplicationRole }; Returns: boolean };
+      submit_candidate_job_application: {
+        Args: {
+          requested_vacancy_id: string;
+          requested_candidate_document_id: string | null;
+          requested_cover_note: string | null;
+        };
+        Returns: string;
+      };
+    };
     Enums: { application_role: ApplicationRole; vacancy_status: VacancyStatus; job_application_status: JobApplicationStatus };
     CompositeTypes: Record<string, never>;
   };

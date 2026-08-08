@@ -69,6 +69,8 @@ Ticket 20B's candidate-owned application tracking and withdrawal workflow is doc
 
 Ticket 21A's read-only employer applicant-review workflow is documented in [`docs/employer-applicant-review.md`](docs/employer-applicant-review.md).
 
+Ticket 21B's controlled employer recruitment-stage actions are documented in [`docs/employer-application-status-actions.md`](docs/employer-application-status-actions.md).
+
 The public [`/project-case-study`](https://talvanta-africa.vercel.app/project-case-study) route presents the project’s architecture, implemented controls, responsible-technology approach, limitations, and possible roadmap without exposing credentials or duplicating the technical runbooks.
 
 ## Environment variables

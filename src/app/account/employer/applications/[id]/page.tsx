@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { updateEmployerApplicationStatus } from "@/app/account/employer/applications/[id]/actions";
 import { AccountCard, AccountPage } from "@/components/account/account-page";
 import { ApplicationStatus } from "@/components/applications/application-status";
+import { EmployerApplicationActions } from "@/components/applications/employer-application-actions";
 import { StatusTimeline } from "@/components/applications/status-timeline";
 import { ButtonLink } from "@/components/ui/button";
 import { applicationStatusLabels } from "@/lib/applications/application-status";
@@ -35,7 +37,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
           {vacancyPublic ? <ButtonLink className="mt-5" href={`/jobs/${vacancy.slug}`}>View Public Vacancy</ButtonLink> : <p className="mt-5 text-slate">This vacancy is no longer publicly available.</p>}
         </AccountCard>
         <AccountCard title="Application status timeline"><StatusTimeline history={history} currentStatus={application.status} /></AccountCard>
-        <AccountCard title="Read-only application review"><p className="font-bold text-navy">Application review is currently read-only in the employer account.</p><p className="mt-2 leading-7 text-slate">Recruitment-stage actions such as shortlisting, interview progression, offer management, and final outcomes will be introduced through the next controlled workflow stage.</p></AccountCard>
+        <AccountCard title="Recruitment Actions"><EmployerApplicationActions action={updateEmployerApplicationStatus.bind(null, application.id)} currentStatus={application.status} /></AccountCard>
       </div>
     </AccountPage>
   );

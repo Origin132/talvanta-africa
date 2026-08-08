@@ -21,10 +21,6 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ s
           {data.unavailable ? <p role="alert" className="mb-4 text-slate">We could not load applications for your organisation at this time.</p> : null}
           <EmployerApplicationList items={data.items} filtered={Boolean(filter)} />
         </AccountCard>
-        <AccountCard title="Read-only application review">
-          <p className="font-bold text-navy">Application review is currently read-only in the employer account.</p>
-          <p className="mt-2 leading-7 text-slate">Recruitment-stage actions such as shortlisting, interview progression, offer management, and final outcomes will be introduced through the next controlled workflow stage.</p>
-        </AccountCard>
       </div>
     </AccountPage>
   );

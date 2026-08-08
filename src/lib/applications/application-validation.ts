@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { applicationStatuses } from "@/lib/applications/application-status";
+import { employerApplicationActionIds } from "@/lib/applications/application-status";
 
 export const applicationIdSchema = z.uuid();
 export const applicationFormSchema = z.object({
@@ -10,3 +11,4 @@ export const applicationFormSchema = z.object({
   }),
 }).strict();
 export const statusUpdateSchema = z.object({ status: z.enum(applicationStatuses), publicNote: z.string().trim().max(2000, "Public note must be 2,000 characters or fewer.") }).strict();
+export const employerApplicationActionSchema = z.object({ actionId: z.enum(employerApplicationActionIds), updateNote: z.string().trim().max(2000, "Update note must be 2,000 characters or fewer.") }).strict();

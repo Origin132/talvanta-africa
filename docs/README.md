@@ -42,3 +42,4 @@ None of the seven source files currently exists in this repository. Their status
 - Ticket 20A documents the secure candidate-only vacancy submission slice, including optional current-CV attachment, duplicate prevention, and initial status history. See `job-application-submission.md`.
 - Ticket 20B documents candidate-owned application listing, details, public status timeline, and controlled withdrawal. See `candidate-application-tracking.md`.
 - Ticket 21A documents read-only employer applicant review with strict vacancy ownership, professional-data allowlists, CV status-only display, and public timeline context. See `employer-applicant-review.md`.
+- Ticket 21B documents controlled employer recruitment-stage status actions, candidate-visible notes, history synchronization, consequential confirmations, and required RLS review. See `employer-application-status-actions.md`.

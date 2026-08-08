@@ -82,3 +82,14 @@ export async function getEmployerApplicationById(id: string): Promise<EmployerAp
 export function isEmployerVacancyPublic(vacancy: EmployerApplicationVacancy) {
   return Boolean(vacancy.published_at && ["published", "closing-soon"].includes(vacancy.status) && (!vacancy.closes_at || new Date(vacancy.closes_at) > new Date()));
 }
+
+export async function getEmployerApplicationMutationContext(id: string) {
+  const current = await requireEmployerApplications(`/account/employer/applications/${id}`);
+  if (!applicationIdSchema.safeParse(id).success) return null;
+  const supabase = await createClient();
+  const applicationResult = await supabase.from("job_applications").select("id, vacancy_id, status").eq("id", id).maybeSingle();
+  if (applicationResult.error || !applicationResult.data) return null;
+  const vacancyResult = await supabase.from("vacancies").select("id").eq("id", applicationResult.data.vacancy_id).eq("employer_user_id", current.user.id).maybeSingle();
+  if (vacancyResult.error || !vacancyResult.data) return null;
+  return { current, application: applicationResult.data };
+}

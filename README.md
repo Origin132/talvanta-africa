@@ -65,6 +65,8 @@ Repository documentation belongs in [`docs/`](docs/README.md). The approved plan
 
 Ticket 20A's secure candidate application-submission workflow is documented in [`docs/job-application-submission.md`](docs/job-application-submission.md).
 
+Ticket 20B's candidate-owned application tracking and withdrawal workflow is documented in [`docs/candidate-application-tracking.md`](docs/candidate-application-tracking.md).
+
 The public [`/project-case-study`](https://talvanta-africa.vercel.app/project-case-study) route presents the project’s architecture, implemented controls, responsible-technology approach, limitations, and possible roadmap without exposing credentials or duplicating the technical runbooks.
 
 ## Environment variables

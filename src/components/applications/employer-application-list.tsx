@@ -1,0 +1,12 @@
+import { ApplicationStatus } from "@/components/applications/application-status";
+import { ButtonLink } from "@/components/ui/button";
+import type { EmployerApplicationListItem } from "@/lib/applications/employer-applications";
+
+const date = (value: string) => new Intl.DateTimeFormat("en-NG", { dateStyle: "medium", timeZone: "Africa/Lagos" }).format(new Date(value));
+
+export function EmployerApplicationList({ items, filtered }: { items: EmployerApplicationListItem[]; filtered: boolean }) {
+  if (!items.length) return filtered ? <p className="text-slate">No applications match this status filter.</p> : <div><h2 className="font-heading text-xl font-extrabold text-navy">No Applications Yet</h2><p className="mt-2 leading-7 text-slate">Applications submitted to vacancies associated with your organisation will appear here.</p><div className="mt-5 flex flex-col gap-3 sm:flex-row"><ButtonLink href="/account/employer/requests">View Recruitment Requests</ButtonLink><ButtonLink href="/jobs" variant="outline">View Published Opportunities</ButtonLink></div></div>;
+  return <div className="grid gap-4">{items.map(({ application, vacancy, candidate }) => <article key={application.id} className="min-w-0 rounded-[var(--radius)] border border-border-grey p-5"><div className="flex flex-wrap items-start justify-between gap-3"><div className="min-w-0"><h2 className="break-words font-heading text-xl font-extrabold text-navy">{candidate.full_name}</h2><p className="break-words text-slate">{candidate.professional_title ?? "Professional title not provided"}</p></div><ApplicationStatus status={application.status} /></div><dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-4"><Detail term="Candidate location" value={candidate.current_location ?? "Not provided"} /><Detail term="Vacancy" value={vacancy.job_title} /><Detail term="Organisation" value={vacancy.organisation_name} /><Detail term="Submitted" value={date(application.submitted_at)} /><Detail term="CV status" value={application.candidate_document_id ? "CV Attached" : "No CV Attached"} /></dl><ButtonLink className="mt-5 w-full sm:w-auto" href={`/account/employer/applications/${application.id}`}>View Application</ButtonLink></article>)}</div>;
+}
+
+function Detail({ term, value }: { term: string; value: string }) { return <div className="min-w-0"><dt className="font-bold text-navy">{term}</dt><dd className="break-words text-slate">{value}</dd></div>; }
